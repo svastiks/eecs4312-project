@@ -5,8 +5,10 @@ chan payment_request = [0] of { mtype };
 chan invoice_channel = [0] of { mtype };
 chan finance_log = [5] of { mtype };
 
-// Tracks subscription status
+// Global state variables for LTL tracking
 bool recurring_active = false;
+bool client_present_for_service = false;
+bool client_completed_payment = false;
 
 proctype Client() {
     mtype method;
@@ -21,6 +23,9 @@ proctype Client() {
 
     printf("Client chose payment method: %e\n", method);
     payment_request!method;
+
+    // After initiating payment, client arrives for service
+    client_present_for_service = true;
 }
 
 proctype PaymentProcessor() {
@@ -33,6 +38,7 @@ proctype PaymentProcessor() {
     :: printf("Payment succeeded\n");
        invoice_channel!method;
        finance_log!method;
+       client_completed_payment = true;
        recurring_active = true;
     :: printf("Payment failed\n");
        finance_log!none;
@@ -49,7 +55,6 @@ proctype RecurringBilling() {
     do
     :: (recurring_active) ->
         printf("Recurring payment initiated\n");
-        // Send payment again
         payment_request!credit;
         break
     od
@@ -66,4 +71,19 @@ proctype FinanceReport() {
             printf("Finance log error: payment failed\n")
         fi
     od
+}
+
+init {
+    atomic {
+        run Client();
+        run PaymentProcessor();
+        run InvoiceSystem();
+        run RecurringBilling();
+        run FinanceReport();
+    }
+}
+
+// LTL property: No access to service unless payment is complete
+ltl no_access_without_payment {
+    [](client_present_for_service -> client_completed_payment)
 }
