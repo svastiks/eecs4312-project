@@ -1,5 +1,4 @@
 /* 
-* PROMELA Model for Smart Health & Wellness Center
 * Booking and Scheduling System Verification
 * 
 * Functional Requirements Modeled:
@@ -18,14 +17,10 @@
 
 /* Message types for communication*/ 
 mtype = {
-	BROWSE_REQUEST,BROWSE_RESPONSE,
-	BOOK_REQUEST,BOOK_RESPONSE,BOOK_CONFIRM,
-	RESCHEDULE_REQUEST,RESCHEDULE_RESPONSE,
-	CANCEL_REQUEST,CANCEL_RESPONSE,CANCEL_CONFIRM,
-	UPDATE_AVAILABILITY,AVAILABILITY_UPDATED,
-	VIEW_SCHEDULE_REQUEST,SCHEDULE_RESPONSE,
-	VIEW_HISTORY_REQUEST,HISTORY_RESPONSE,
-	NOTIFICATION,REMINDER
+	BOOK_REQUEST, BOOK_RESPONSE,
+	CANCEL_REQUEST, CANCEL_RESPONSE,
+	RESCHEDULE_REQUEST, RESCHEDULE_RESPONSE,
+	UPDATE_AVAILABILITY, AVAILABILITY_UPDATED
 };
 
 /* Service types*/ 
@@ -70,7 +65,6 @@ chan user_to_system = [10] of { mtype,int,int,int }; // message type, user_id, s
 chan system_to_user = [10] of { mtype,int,int,int };
 chan staff_to_system = [10] of { mtype,int,int,int };
 chan system_to_staff = [10] of { mtype,int,int,int };
-chan notification_channel = [10] of { mtype,int,int };
 
 /* Initialize system with available time slots*/ 
 init {
@@ -96,11 +90,10 @@ init {
 	
 	/* Start system processes*/ 
 	run BookingSystem();
-	run NotificationSystem();
 	run User(1);
 	run User(2);
 	run Staff(1);
-	run Staff (2);
+	run Staff(2);
 }
 
 /* FR6: Browse available time slots*/ 
@@ -158,11 +151,9 @@ inline book_appointment(msg_type, param1, param2) {
 		
 		next_booking_id++;
 		
-		/* FR8: Send booking confirmation*/ 
-		notification_channel!BOOK_CONFIRM,param1,param2;
-		system_to_user!BOOK_RESPONSE,param1,1,param2;/* Success*/ 
+		system_to_user!BOOK_RESPONSE,param1,1,param2;/* Success */ 
 	:: else -> 
-		system_to_user!BOOK_RESPONSE,param1,0,param2;/* Failure*/ 
+		system_to_user!BOOK_RESPONSE,param1,0,param2;/* Failure */ 
 	fi
 }
 
@@ -184,10 +175,6 @@ inline cancel_appointment(param1, param2) {
 			time_slots[bookings[i].slot_id].user_id = -1;
 			
 			found = true;
-			
-			/* FR8: Send cancellation confirmation*/ 
-			notification_channel!CANCEL_CONFIRM,param1,param2;
-			
 			break
 		:: else -> skip
 		fi
@@ -276,44 +263,25 @@ proctype BookingSystem() {
 	int param1,param2,param3;
 	
 	do
-	:: user_to_system ? msg_type, param1, param2, param3 ->  // received a message from user? if yes get the message type and parameters and start the loop, untill that its blocked
-		if  :: msg_type == BROWSE_REQUEST -> 
-			    browse_available_slots (BROWSE_REQUEST, param1); // service_type, user_id
-			
-		    :: msg_type == BOOK_REQUEST -> 
-			    book_appointment(BOOK_REQUEST, param1, param2); /* service_type, user_id, slot_id*/
+	:: user_to_system ? msg_type, param1, param2, param3 -> 
+		if  :: msg_type == BOOK_REQUEST -> 
+			    book_appointment(msg_type, param1, param2);
 			
 		    :: msg_type == CANCEL_REQUEST -> 
 			    cancel_appointment(param1,param2);
 			
 		    :: msg_type == RESCHEDULE_REQUEST -> 
 			    reschedule_appointment(param1,param2,param3);
-			
-		    :: msg_type == VIEW_HISTORY_REQUEST -> 
-			    view_booking_history(param1);
 		fi
 		
-	:: staff_to_system?msg_type,param1,param2,param3 -> 
+	:: staff_to_system ? msg_type,param1,param2,param3 -> 
 		if  :: msg_type == UPDATE_AVAILABILITY -> 
 			update_staff_availability(param1,param2,param3);
-			
-		:: msg_type == VIEW_SCHEDULE_REQUEST -> 
-			view_staff_schedule(param1);
 		fi
 	od
 }
 
-/* FR8: Notification System*/ 
-proctype NotificationSystem() {
-	mtype msg_type;
-	int user_id,param;
-	
-	do
-	:: notification_channel ? msg_type, user_id, param -> 
-		/* Send notifications to users*/ 
-		system_to_user ! NOTIFICATION, user_id, 0, param;
-	od
-}
+
 
 /* User Process*/ 
 proctype User(int user_id) {
@@ -321,29 +289,20 @@ proctype User(int user_id) {
 	int param1,param2,response;
 	
 	do
-	:: /* FR6: Browse available slots*/ 
-		user_to_system ! BROWSE_REQUEST, user_id; //send BROWSE_REQUEST with user_id
-		system_to_user ? msg_type, param1, param2, response;
-		assert(msg_type == BROWSE_RESPONSE);
-		
-	:: /* FR7: Book appointment*/ 
-		user_to_system ! BOOK_REQUEST, user_id, 3; /* for user_id(x) Book slot 3, and booking id 0*/ 
+	:: /* Book appointment*/ 
+		user_to_system ! BOOK_REQUEST, user_id, 3;
 		system_to_user ? msg_type, param1, param2, response;
 		assert(msg_type == BOOK_RESPONSE);
 		
-	:: /* FR7: Cancel appointment*/ 
-		user_to_system!CANCEL_REQUEST,user_id,1,0;/* Cancel booking 1*/ 
-		system_to_user?msg_type,param1,param2,response;
+	:: /* Cancel appointment*/ 
+		user_to_system ! CANCEL_REQUEST, user_id, 1, 0;
+		system_to_user ? msg_type, param1, param2, response;
 		assert(msg_type == CANCEL_RESPONSE);
 		
-	:: /* FR11: View booking history*/ 
-		user_to_system!VIEW_HISTORY_REQUEST,user_id,0,0;
-		system_to_user?msg_type,param1,param2,response;
-		assert(msg_type == HISTORY_RESPONSE);
-		
-	:: /* Receive notifications*/ 
-		system_to_user?msg_type,param1,param2,response;
-		/* Process notification*/ 
+	:: /* Reschedule appointment */ 
+		user_to_system ! RESCHEDULE_REQUEST, user_id, 1, 2;
+		system_to_user ? msg_type, param1, param2, response;
+		assert(msg_type == RESCHEDULE_RESPONSE);
 		
 	:: break
 	od
@@ -355,15 +314,10 @@ proctype Staff(int staff_id) {
 	int param1,param2,response;
 	
 	do
-	:: /* FR9: Update availability*/ 
-		staff_to_system!UPDATE_AVAILABILITY,staff_id,1,1;/* Set slot 1 available*/ 
-		system_to_staff?msg_type,param1,param2,response;
+	:: /* Update availability*/ 
+		staff_to_system ! UPDATE_AVAILABILITY, staff_id, 1, 1;
+		system_to_staff ? msg_type, param1, param2, response;
 		assert(msg_type == AVAILABILITY_UPDATED);
-		
-	:: /* FR10: View schedule*/ 
-		staff_to_system!VIEW_SCHEDULE_REQUEST,staff_id,0,0;
-		system_to_staff?msg_type,param1,param2,response;
-		assert(msg_type == SCHEDULE_RESPONSE);
 	:: break 
 	od
 }
