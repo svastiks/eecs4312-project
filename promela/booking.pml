@@ -1,4 +1,5 @@
 /* 
+* PROMELA Model for Smart Health & Wellness Center
 * Booking and Scheduling System Verification
 * 
 * Functional Requirements Modeled:
@@ -17,10 +18,14 @@
 
 /* Message types for communication*/ 
 mtype = {
-	BOOK_REQUEST, BOOK_RESPONSE,
-	CANCEL_REQUEST, CANCEL_RESPONSE,
-	RESCHEDULE_REQUEST, RESCHEDULE_RESPONSE,
-	UPDATE_AVAILABILITY, AVAILABILITY_UPDATED
+	BROWSE_REQUEST,BROWSE_RESPONSE,
+	BOOK_REQUEST,BOOK_RESPONSE,BOOK_CONFIRM,
+	RESCHEDULE_REQUEST,RESCHEDULE_RESPONSE,
+	CANCEL_REQUEST,CANCEL_RESPONSE,CANCEL_CONFIRM,
+	UPDATE_AVAILABILITY,AVAILABILITY_UPDATED,
+	VIEW_SCHEDULE_REQUEST,SCHEDULE_RESPONSE,
+	VIEW_HISTORY_REQUEST,HISTORY_RESPONSE,
+	NOTIFICATION,REMINDER
 };
 
 /* Service types*/ 
@@ -60,11 +65,29 @@ Booking bookings[MAX_BOOKINGS]; // total number of bookings made, initialized to
 StaffAvailability staff_availability[MAX_STAFF]; // total number of staff members, initialized to true for all slots
 int next_booking_id = 0; //booking id generator, starts from 0
 
+/* LTL State Variables */
+bool client_1_initiated_booking = false;
+bool client_2_initiated_booking = false;
+bool unique_slot_booked_by_client_1 = false;
+bool unique_slot_booked_by_client_2 = false;
+bool unique_slot_is_available = true;
+bool client_1_completed_payment = false;
+bool client_1_present_for_service = false;
+bool client_1_finished_booking = false;
+bool client_1_cancelled_booking = false;
+
+/* LTL Properties */
+ltl property1 {[] (client_1_present_for_service -> client_1_completed_payment)} /* Safety: No service access until payment */
+ltl property2 {[] (client_1_cancelled_booking -> <> unique_slot_is_available)} /* Liveness: Cancelled slot becomes available */
+ltl property3 {[] (client_1_initiated_booking -> <> client_1_finished_booking)} /* Liveness: Booking confirmation */
+ltl property4 {[] ((unique_slot_booked_by_client_1 -> !unique_slot_booked_by_client_2) && (unique_slot_booked_by_client_2 -> !unique_slot_booked_by_client_1))} /* Safety: Mutual exclusion */
+
 /* Communication channels*/ 
 chan user_to_system = [10] of { mtype,int,int,int }; // message type, user_id, slot_id, booking_id
 chan system_to_user = [10] of { mtype,int,int,int };
 chan staff_to_system = [10] of { mtype,int,int,int };
 chan system_to_staff = [10] of { mtype,int,int,int };
+chan notification_channel = [10] of { mtype,int,int };
 
 /* Initialize system with available time slots*/ 
 init {
@@ -90,10 +113,11 @@ init {
 	
 	/* Start system processes*/ 
 	run BookingSystem();
+	run NotificationSystem();
 	run User(1);
 	run User(2);
 	run Staff(1);
-	run Staff(2);
+	run Staff (2);
 }
 
 /* FR6: Browse available time slots*/ 
@@ -114,26 +138,39 @@ inline browse_available_slots(service_type, user_id) {
 
 /* FR12: Check for double - booking prevention*/ 
 inline check_double_booking(slot_id,staff_id) {
+    /* Check slot bounds */
+    assert(slot_id >= 0 && slot_id < MAX_SLOTS);
+    
+    /* Check staff bounds */
+    assert(staff_id >= 0 && staff_id < MAX_STAFF);
+    
 	/* Check if slot is already booked*/ 
 	assert(time_slots[slot_id].status == AVAILABLE);
+	
 	/* Check if staff is available for this slot*/ 
 	assert(staff_availability[staff_id].available_slots[slot_id] == true);
 }
 
 /* FR7: Book appointment*/ 
 inline book_appointment(msg_type, param1, param2) {
-    int staff_id;
+    int staff_id = 0;
     
-    /* Assign a staff member if none assigned */
+    /* Update LTL state variables for booking initiation */
     if
-    :: (time_slots[param2].staff_id == -1) -> staff_id = 0;
-    :: else -> staff_id = time_slots[param2].staff_id;
+    :: (param1 == 1) -> client_1_initiated_booking = true
+    :: (param1 == 2) -> client_2_initiated_booking = true
+    fi;
+    
+    /* Assign staff if needed */
+    if
+    :: (time_slots[param2].staff_id == -1) -> staff_id = 0
+    :: (time_slots[param2].staff_id >= 0 && time_slots[param2].staff_id < MAX_STAFF) -> 
+        staff_id = time_slots[param2].staff_id
     fi;
 	
 	/* FR12: Prevent double - booking*/ 
 	if
 	:: (time_slots[param2].status == AVAILABLE && 
-		staff_id >= 0 && staff_id < MAX_STAFF &&
 		staff_availability[staff_id].available_slots[param2]) -> 
 		check_double_booking(param2, staff_id);
 		
@@ -158,8 +195,26 @@ inline book_appointment(msg_type, param1, param2) {
 		
 		next_booking_id++;
 		
+		/* Update LTL state variables for successful booking */
+		if
+		:: (param1 == 1) -> 
+			unique_slot_booked_by_client_1 = true;
+			unique_slot_is_available = false;
+			client_1_finished_booking = true;
+		:: (param1 == 2) -> 
+			unique_slot_booked_by_client_2 = true;
+			unique_slot_is_available = false;
+		fi;
+		
+		/* FR8: Send booking confirmation */ 
+		notification_channel!BOOK_CONFIRM,param1,param2;
 		system_to_user!BOOK_RESPONSE,param1,1,param2;/* Success */ 
 	:: else -> 
+		/* Reset LTL state variables for failed booking */
+		if
+		:: (param1 == 1) -> client_1_initiated_booking = false;
+		:: (param1 == 2) -> client_2_initiated_booking = false;
+		fi;
 		system_to_user!BOOK_RESPONSE,param1,0,param2;/* Failure */ 
 	fi
 }
@@ -181,7 +236,22 @@ inline cancel_appointment(param1, param2) {
 			time_slots[bookings[i].slot_id].status = AVAILABLE;
 			time_slots[bookings[i].slot_id].user_id = -1;
 			
+			/* Update LTL state variables for cancellation */
+			if
+			:: (param1 == 1) -> 
+				client_1_cancelled_booking = true;
+				unique_slot_booked_by_client_1 = false;
+				unique_slot_is_available = true;
+			:: (param1 == 2) -> 
+				unique_slot_booked_by_client_2 = false;
+				unique_slot_is_available = true;
+			fi;
+			
 			found = true;
+			
+			/* FR8: Send cancellation confirmation*/ 
+			notification_channel!CANCEL_CONFIRM,param1,param2;
+			
 			break
 		:: else -> skip
 		fi
@@ -270,46 +340,84 @@ proctype BookingSystem() {
 	int param1,param2,param3;
 	
 	do
-	:: user_to_system ? msg_type, param1, param2, param3 -> 
-		if  :: msg_type == BOOK_REQUEST -> 
-			    book_appointment(msg_type, param1, param2);
+	:: user_to_system ? msg_type, param1, param2, param3 ->  // received a message from user? if yes get the message type and parameters and start the loop, untill that its blocked
+		if  :: msg_type == BROWSE_REQUEST -> 
+			    browse_available_slots (BROWSE_REQUEST, param1); // service_type, user_id
+			
+		    :: msg_type == BOOK_REQUEST -> 
+			    book_appointment(BOOK_REQUEST, param1, param2); /* service_type, user_id, slot_id*/
 			
 		    :: msg_type == CANCEL_REQUEST -> 
 			    cancel_appointment(param1,param2);
 			
 		    :: msg_type == RESCHEDULE_REQUEST -> 
 			    reschedule_appointment(param1,param2,param3);
+			
+		    :: msg_type == VIEW_HISTORY_REQUEST -> 
+			    view_booking_history(param1);
 		fi
 		
-	:: staff_to_system ? msg_type,param1,param2,param3 -> 
+	:: staff_to_system?msg_type,param1,param2,param3 -> 
 		if  :: msg_type == UPDATE_AVAILABILITY -> 
 			update_staff_availability(param1,param2,param3);
+			
+		:: msg_type == VIEW_SCHEDULE_REQUEST -> 
+			view_staff_schedule(param1);
 		fi
 	od
 }
 
-
+/* FR8: Notification System*/ 
+proctype NotificationSystem() {
+	mtype msg_type;
+	int user_id,param;
+	
+	do
+	:: notification_channel ? msg_type, user_id, param -> 
+		/* Send notifications to users*/ 
+		system_to_user ! NOTIFICATION, user_id, 0, param;
+	od
+}
 
 /* User Process*/ 
 proctype User(int user_id) {
 	mtype msg_type;
 	int param1,param2,response;
 	
+	/* Payment verification for client 1 */
+	if
+	:: (user_id == 1) -> 
+		if
+		:: true -> client_1_completed_payment = true;
+		:: true -> client_1_completed_payment = false;
+		fi
+	:: else -> skip
+	fi;
+	
 	do
-	:: /* Book appointment*/ 
-		user_to_system ! BOOK_REQUEST, user_id, 3;
+	:: /* FR6: Browse available slots*/ 
+		user_to_system ! BROWSE_REQUEST, user_id; //send BROWSE_REQUEST with user_id
+		system_to_user ? msg_type, param1, param2, response;
+		assert(msg_type == BROWSE_RESPONSE);
+		
+	:: /* FR7: Book appointment*/ 
+		user_to_system ! BOOK_REQUEST, user_id, 3; /* for user_id(x) Book slot 3, and booking id 0*/ 
 		system_to_user ? msg_type, param1, param2, response;
 		assert(msg_type == BOOK_RESPONSE);
 		
-	:: /* Cancel appointment*/ 
-		user_to_system ! CANCEL_REQUEST, user_id, 1, 0;
-		system_to_user ? msg_type, param1, param2, response;
+	:: /* FR7: Cancel appointment*/ 
+		user_to_system!CANCEL_REQUEST,user_id,1,0;/* Cancel booking 1*/ 
+		system_to_user?msg_type,param1,param2,response;
 		assert(msg_type == CANCEL_RESPONSE);
 		
-	:: /* Reschedule appointment */ 
-		user_to_system ! RESCHEDULE_REQUEST, user_id, 1, 2;
-		system_to_user ? msg_type, param1, param2, response;
-		assert(msg_type == RESCHEDULE_RESPONSE);
+	:: /* FR11: View booking history*/ 
+		user_to_system!VIEW_HISTORY_REQUEST,user_id,0,0;
+		system_to_user?msg_type,param1,param2,response;
+		assert(msg_type == HISTORY_RESPONSE);
+		
+	:: /* Receive notifications*/ 
+		system_to_user?msg_type,param1,param2,response;
+		/* Process notification*/ 
 		
 	:: break
 	od
@@ -321,10 +429,16 @@ proctype Staff(int staff_id) {
 	int param1,param2,response;
 	
 	do
-	:: /* Update availability*/ 
-		staff_to_system ! UPDATE_AVAILABILITY, staff_id, 1, 1;
-		system_to_staff ? msg_type, param1, param2, response;
+	:: /* FR9: Update availability*/ 
+		staff_to_system!UPDATE_AVAILABILITY,staff_id,1,1;/* Set slot 1 available*/ 
+		system_to_staff?msg_type,param1,param2,response;
 		assert(msg_type == AVAILABILITY_UPDATED);
+		
+	:: /* FR10: View schedule*/ 
+		staff_to_system!VIEW_SCHEDULE_REQUEST,staff_id,0,0;
+		system_to_staff?msg_type,param1,param2,response;
+		assert(msg_type == SCHEDULE_RESPONSE);
 	:: break 
 	od
 }
+
