@@ -122,11 +122,18 @@ inline check_double_booking(slot_id,staff_id) {
 
 /* FR7: Book appointment*/ 
 inline book_appointment(msg_type, param1, param2) {
-    int staff_id = time_slots[param2].staff_id;
+    int staff_id;
+    
+    /* Assign a staff member if none assigned */
+    if
+    :: (time_slots[param2].staff_id == -1) -> staff_id = 0;
+    :: else -> staff_id = time_slots[param2].staff_id;
+    fi;
 	
 	/* FR12: Prevent double - booking*/ 
 	if
 	:: (time_slots[param2].status == AVAILABLE && 
+		staff_id >= 0 && staff_id < MAX_STAFF &&
 		staff_availability[staff_id].available_slots[param2]) -> 
 		check_double_booking(param2, staff_id);
 		
