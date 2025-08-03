@@ -36,21 +36,21 @@ mtype = { AVAILABLE, BOOKED, CANCELLED };
 
 /* Time slot structure*/ 
 typedef TimeSlot {
-	int slot_id; // Unique identifier for the time slot
-	mtype service_type; // Type of service for the time slot
-	int staff_id; // ID of the staff member assigned to this slot
-	mtype status; // current status of the time slot (AVAILABLE, BOOKED, CANCELLED)
-	int user_id; // who booked this slot (0 if not booked)
+	byte slot_id; // Unique identifier for the time slot
+	byte service_type; // Type of service for the time slot
+	byte staff_id; // ID of the staff member assigned to this slot
+	byte status; // current status of the time slot (AVAILABLE, BOOKED, CANCELLED)
+	byte user_id; // who booked this slot (0 if not booked)
 }
 
 /* Booking record structure, this maintains the booking history and state*/ 
 typedef Booking {
-	int booking_id; // Unique identifier for the booking
-	int slot_id; // ID of the time slot booked connected to TimeSlot
-	int user_id; // ID of the user who made the booking
-	int staff_id; // ID of the staff member assigned to this booking
-	mtype service_type; // Type of service booked - gym, yoga etc
-	mtype status; // current status of the booking - available, booked, cancelled
+	byte booking_id; // Unique identifier for the booking
+	byte slot_id; // ID of the time slot booked connected to TimeSlot
+	byte user_id; // ID of the user who made the booking
+	byte staff_id; // ID of the staff member assigned to this booking
+	byte service_type; // Type of service booked - gym, yoga etc
+	byte status; // current status of the booking - available, booked, cancelled
 }
 
 /* Staff availability structure*/ 
@@ -63,10 +63,10 @@ typedef StaffAvailability {
 TimeSlot time_slots[MAX_SLOTS]; // total number of time slots available in the system
 Booking bookings[MAX_BOOKINGS]; // total number of bookings made, initialized to 0
 StaffAvailability staff_availability[MAX_STAFF]; // total number of staff members, initialized to true for all slots
-int next_booking_id = 1; //booking id generator, starts from 1
+int next_booking_id = 0; //booking id generator, starts from 0
 
 /* Communication channels*/ 
-chan user_to_system = [10] of { mtype,int,int,int }; // message type, user_id, booking_id, context dependant(slot_id, some int)
+chan user_to_system = [10] of { mtype,int,int,int }; // message type, user_id, slot_id, booking_id
 chan system_to_user = [10] of { mtype,int,int,int };
 chan staff_to_system = [10] of { mtype,int,int,int };
 chan system_to_staff = [10] of { mtype,int,int,int };
@@ -104,7 +104,7 @@ init {
 }
 
 /* FR6: Browse available time slots*/ 
-inline browse_available_slots(user_id, service_type) {
+inline browse_available_slots(service_type, user_id) {
 	int i;
 	int available_count = 0;
 	
@@ -116,7 +116,7 @@ inline browse_available_slots(user_id, service_type) {
 		fi
 	}
 	
-	system_to_user ! BROWSE_RESPONSE,user_id,available_count,0;
+	system_to_user ! BROWSE_RESPONSE, user_id, available_count, 0;
 }
 
 /* FR12: Check for double - booking prevention*/ 
@@ -128,45 +128,52 @@ inline check_double_booking(slot_id,staff_id) {
 }
 
 /* FR7: Book appointment*/ 
-inline book_appointment (user_id, slot_id, service_type) {
-	
-    int staff_id = time_slots[slot_id].staff_id;
+inline book_appointment(msg_type, param1, param2) {
+    int staff_id = time_slots[param2].staff_id;
 	
 	/* FR12: Prevent double - booking*/ 
-	if  :: (time_slots[slot_id].status == AVAILABLE && 
-		staff_availability[staff_id].available_slots[slot_id]) -> 
-		check_double_booking(slot_id,staff_id);
+	if
+	:: (time_slots[param2].status == AVAILABLE && 
+		staff_availability[staff_id].available_slots[param2]) -> 
+		check_double_booking(param2, staff_id);
 		
 		/* Update time slot*/ 
-		time_slots[slot_id].status = BOOKED;
-		time_slots[slot_id].user_id = user_id;
+		time_slots[param2].status = BOOKED;
+		time_slots[param2].user_id = param1;
+		time_slots[param2].service_type = msg_type;
+		
+		/* If no staff assigned, assign one */
+		if
+		:: (time_slots[param2].staff_id == -1) -> time_slots[param2].staff_id = 0
+		:: else -> skip
+		fi;
 		
 		/* Create booking record*/ 
-		bookings[next_booking_id - 1].booking_id = next_booking_id;
-		bookings[next_booking_id - 1].slot_id = slot_id;
-		bookings[next_booking_id - 1].user_id = user_id;
-		bookings[next_booking_id - 1].staff_id = staff_id;
-		bookings[next_booking_id - 1].service_type = GYM;
-		bookings[next_booking_id - 1].status = BOOKED;
+		bookings[next_booking_id].booking_id = next_booking_id + 1;
+		bookings[next_booking_id].slot_id = param2;
+		bookings[next_booking_id].user_id = param1;
+		bookings[next_booking_id].staff_id = staff_id;
+		bookings[next_booking_id].service_type = msg_type;
+		bookings[next_booking_id].status = BOOKED;
 		
 		next_booking_id++;
 		
 		/* FR8: Send booking confirmation*/ 
-		notification_channel!BOOK_CONFIRM,user_id,slot_id;
-		system_to_user!BOOK_RESPONSE,user_id,1,slot_id;/* Success*/ 
+		notification_channel!BOOK_CONFIRM,param1,param2;
+		system_to_user!BOOK_RESPONSE,param1,1,param2;/* Success*/ 
 	:: else -> 
-		system_to_user!BOOK_RESPONSE,user_id,0,slot_id;/* Failure*/ 
+		system_to_user!BOOK_RESPONSE,param1,0,param2;/* Failure*/ 
 	fi
 }
 
 /* FR7: Cancel appointment*/ 
-inline cancel_appointment(user_id,booking_id) {
+inline cancel_appointment(param1, param2) {
 	int i;
 	bool found = false;
 	
 	for (i : 0 .. MAX_BOOKINGS - 1) {
-		if  :: (bookings[i].booking_id == booking_id && 
-			bookings[i].user_id == user_id && 
+		if  :: (bookings[i].booking_id == param2 && 
+			bookings[i].user_id == param1 && 
 			bookings[i].status == BOOKED) -> 
 			
 			/* Update booking status*/ 
@@ -174,46 +181,46 @@ inline cancel_appointment(user_id,booking_id) {
 			
 			/* Free up time slot*/ 
 			time_slots[bookings[i].slot_id].status = AVAILABLE;
-			time_slots[bookings[i].slot_id].user_id = 0;
+			time_slots[bookings[i].slot_id].user_id = -1;
 			
 			found = true;
 			
 			/* FR8: Send cancellation confirmation*/ 
-			notification_channel!CANCEL_CONFIRM,user_id,booking_id;
+			notification_channel!CANCEL_CONFIRM,param1,param2;
 			
 			break
 		:: else -> skip
 		fi
 	}
 	
-	if  :: found -> system_to_user!CANCEL_RESPONSE,user_id,1,booking_id;/* Success*/ 
-	:: else -> system_to_user!CANCEL_RESPONSE,user_id,0,booking_id;/* Failure*/ 
+	if  :: found -> system_to_user!CANCEL_RESPONSE,param1,1,param2;/* Success*/ 
+	:: else -> system_to_user!CANCEL_RESPONSE,param1,0,param2;/* Failure*/ 
 	fi
 }
 
 /* FR7: Reschedule appointment*/ 
-inline reschedule_appointment(user_id,old_booking_id,new_slot_id) {
+inline reschedule_appointment(param1, param2, param3) {
 	int i;
 	bool found = false;
 	
 	for (i : 0 .. MAX_BOOKINGS - 1) {
-		if :: (bookings[i].booking_id == old_booking_id && 
-			bookings[i].user_id == user_id && 
+		if :: (bookings[i].booking_id == param2 && 
+			bookings[i].user_id == param1 && 
 			bookings[i].status == BOOKED) -> 
 			
 			/* Check if new slot is available*/ 
-			if :: (time_slots[new_slot_id].status == AVAILABLE) -> 
+			if :: (time_slots[param3].status == AVAILABLE) -> 
 				
 				/* Cancel old booking*/ 
 				time_slots[bookings[i].slot_id].status = AVAILABLE;
-				time_slots[bookings[i].slot_id].user_id = 0;
+				time_slots[bookings[i].slot_id].user_id = -1;
 				
 				/* Book new slot*/ 
-				time_slots[new_slot_id].status = BOOKED;
-				time_slots[new_slot_id].user_id = user_id;
+				time_slots[param3].status = BOOKED;
+				time_slots[param3].user_id = param1;
 				
 				/* Update booking record*/ 
-				bookings[i].slot_id = new_slot_id;
+				bookings[i].slot_id = param3;
 				found = true;
 				break
 				
@@ -223,44 +230,44 @@ inline reschedule_appointment(user_id,old_booking_id,new_slot_id) {
 		fi
 	}
 	
-	if  :: found -> system_to_user!RESCHEDULE_RESPONSE,user_id,1,new_slot_id;
-	:: else -> system_to_user!RESCHEDULE_RESPONSE,user_id,0,new_slot_id;
+	if  :: found -> system_to_user!RESCHEDULE_RESPONSE,param1,1,param3;
+	:: else -> system_to_user!RESCHEDULE_RESPONSE,param1,0,param3;
 	fi
 }
 
 /* FR11: View booking history*/ 
-inline view_booking_history(user_id) {
+inline view_booking_history(param1) {
 	int i;
 	int user_bookings = 0;
 	
 	for (i: 0 .. MAX_BOOKINGS - 1) {
-		if  :: (bookings[i].user_id == user_id && bookings[i].booking_id > 0) -> 
+		if  :: (bookings[i].user_id == param1 && bookings[i].booking_id > 0) -> 
 			user_bookings++
 		:: else -> skip
 		fi
 	}
-	system_to_user!HISTORY_RESPONSE,user_id,user_bookings,0;
+	system_to_user!HISTORY_RESPONSE,param1,user_bookings,0;
 }
 
 /* FR9: Staff update availability*/ 
-inline update_staff_availability(staff_id,slot_id,available) {
-	staff_availability[staff_id].available_slots[slot_id] = available;
-	system_to_staff!AVAILABILITY_UPDATED,staff_id,slot_id,available;
+inline update_staff_availability(param1,param2,param3) {
+	staff_availability[param1].available_slots[param2] = param3;
+	system_to_staff!AVAILABILITY_UPDATED,param1,param2,param3;
 }
 
 /* FR10: Staff view schedule*/ 
-inline view_staff_schedule(staff_id) {
+inline view_staff_schedule(param1) {
 	int i;
 	int appointments = 0;
 	
 	for (i: 0 .. MAX_SLOTS - 1) {
-		if  :: (time_slots[i].staff_id == staff_id && time_slots[i].status == BOOKED) -> 
+		if  :: (time_slots[i].staff_id == param1 && time_slots[i].status == BOOKED) -> 
 			appointments++
 		:: else -> skip
 		fi
 	}
 	
-	system_to_staff!SCHEDULE_RESPONSE,staff_id,appointments,0;
+	system_to_staff!SCHEDULE_RESPONSE,param1,appointments,0;
 }
 
 /* Main Booking System Process*/ 
@@ -271,10 +278,10 @@ proctype BookingSystem() {
 	do
 	:: user_to_system ? msg_type, param1, param2, param3 ->  // received a message from user? if yes get the message type and parameters and start the loop, untill that its blocked
 		if  :: msg_type == BROWSE_REQUEST -> 
-			    browse_available_slots (param1,param2);
+			    browse_available_slots (BROWSE_REQUEST, param1); // service_type, user_id
 			
 		    :: msg_type == BOOK_REQUEST -> 
-			    book_appointment(param1,param2,param3);
+			    book_appointment(BOOK_REQUEST, param1, param2); /* service_type, user_id, slot_id*/
 			
 		    :: msg_type == CANCEL_REQUEST -> 
 			    cancel_appointment(param1,param2);
@@ -315,13 +322,13 @@ proctype User(int user_id) {
 	
 	do
 	:: /* FR6: Browse available slots*/ 
-		user_to_system ! BROWSE_REQUEST, user_id, 0, 0;
+		user_to_system ! BROWSE_REQUEST, user_id; //send BROWSE_REQUEST with user_id
 		system_to_user ? msg_type, param1, param2, response;
 		assert(msg_type == BROWSE_RESPONSE);
 		
 	:: /* FR7: Book appointment*/ 
-		user_to_system!BOOK_REQUEST,user_id,1,0;/* Book slot 1*/ 
-		system_to_user?msg_type,param1,param2,response;
+		user_to_system ! BOOK_REQUEST, user_id, 3; /* for user_id(x) Book slot 3, and booking id 0*/ 
+		system_to_user ? msg_type, param1, param2, response;
 		assert(msg_type == BOOK_RESPONSE);
 		
 	:: /* FR7: Cancel appointment*/ 
