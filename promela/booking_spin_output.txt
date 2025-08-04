@@ -1,0 +1,3110 @@
+$ spin -g -l -p -r -s  proxy.pml
+  0:	proc  - (:root:) creates proc  0 (:init:)
+ltl property1: [] ((! (client_1_present_for_service)) || (client_1_completed_payment))
+ltl property2: [] ((! (client_1_cancelled_booking)) || (<> (unique_slot_is_available)))
+ltl property3: [] ((! (client_1_initiated_booking)) || (<> (client_1_finished_booking)))
+ltl property4: [] (((! (unique_slot_booked_by_client_1)) || (! (unique_slot_booked_by_client_2))) && ((! (unique_slot_booked_by_client_2)) || (! (unique_slot_booked_by_client_1))))
+  1:	proc  0 (:init::1) proxy.pml:97 (state 1)	[i = 0]
+		:init:(0):i = 0
+  2:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+  3:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+  4:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+  5:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+  6:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+  7:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+  8:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+  9:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 1
+ 10:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 11:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+ 12:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+ 13:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+ 14:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+ 15:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+ 16:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+ 17:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 2
+ 18:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 19:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+ 20:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+ 21:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+ 22:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+ 23:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+ 24:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+ 25:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 3
+ 26:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 27:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+ 28:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+ 29:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+ 30:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+ 31:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+ 32:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+ 33:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 4
+ 34:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 35:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+ 36:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+ 37:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+ 38:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+ 39:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+ 40:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+ 41:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 5
+ 42:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 43:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+ 44:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+ 45:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+ 46:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+ 47:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+ 48:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+ 49:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 6
+ 50:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 51:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+ 52:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+ 53:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+ 54:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+ 55:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+ 56:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+ 57:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 7
+ 58:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 59:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+ 60:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+ 61:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+ 62:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+ 63:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+ 64:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+ 65:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 8
+ 66:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 67:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+ 68:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+ 69:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+ 70:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+ 71:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+ 72:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+ 73:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 9
+ 74:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 75:	proc  0 (:init::1) proxy.pml:97 (state 2)	[((i<=(10-1)))]
+ 76:	proc  0 (:init::1) proxy.pml:98 (state 3)	[time_slots[i].slot_id = i]
+ 77:	proc  0 (:init::1) proxy.pml:99 (state 4)	[time_slots[i].service_type = GYM]
+ 78:	proc  0 (:init::1) proxy.pml:100 (state 5)	[time_slots[i].staff_id = -(1)]
+ 79:	proc  0 (:init::1) proxy.pml:101 (state 6)	[time_slots[i].status = AVAILABLE]
+ 80:	proc  0 (:init::1) proxy.pml:102 (state 7)	[time_slots[i].user_id = -(1)]
+ 81:	proc  0 (:init::1) proxy.pml:97 (state 8)	[i = (i+1)]
+		:init:(0):i = 10
+ 82:	proc  0 (:init::1) proxy.pml:106 (state 12)	[.(goto)]
+ 83:	proc  0 (:init::1) proxy.pml:103 (state 9)	[else]
+ 84:	proc  0 (:init::1) proxy.pml:103 (state 10)	[goto :b0]
+ 85:	proc  0 (:init::1) proxy.pml:106 (state 14)	[i = 0]
+		:init:(0):i = 0
+ 86:	proc  0 (:init::1) proxy.pml:115 (state 31)	[.(goto)]
+ 87:	proc  0 (:init::1) proxy.pml:106 (state 15)	[((i<=(3-1)))]
+ 88:	proc  0 (:init::1) proxy.pml:107 (state 16)	[staff_availability[i].staff_id = i]
+ 89:	proc  0 (:init::1) proxy.pml:109 (state 17)	[j = 0]
+		:init:(0):j = 0
+ 90:	proc  0 (:init::1) proxy.pml:109 (state 18)	[j = 0]
+		:init:(0):j = 0
+ 91:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+ 92:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+ 93:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+ 94:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 1
+ 95:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+ 96:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+ 97:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+ 98:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 2
+ 99:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+100:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+101:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+102:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 3
+103:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+104:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+105:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+106:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 4
+107:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+108:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+109:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+110:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 5
+111:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+112:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+113:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+114:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 6
+115:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+116:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+117:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+118:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 7
+119:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+120:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+121:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+122:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 8
+123:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+124:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+125:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+126:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 9
+127:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+128:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+129:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+130:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 10
+131:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+132:	proc  0 (:init::1) proxy.pml:111 (state 22)	[else]
+133:	proc  0 (:init::1) proxy.pml:111 (state 23)	[goto :b2]
+134:	proc  0 (:init::1) proxy.pml:106 (state 27)	[i = (i+1)]
+		:init:(0):i = 1
+135:	proc  0 (:init::1) proxy.pml:115 (state 31)	[.(goto)]
+136:	proc  0 (:init::1) proxy.pml:106 (state 15)	[((i<=(3-1)))]
+137:	proc  0 (:init::1) proxy.pml:107 (state 16)	[staff_availability[i].staff_id = i]
+138:	proc  0 (:init::1) proxy.pml:109 (state 17)	[j = 0]
+		:init:(0):j = 0
+139:	proc  0 (:init::1) proxy.pml:109 (state 18)	[j = 0]
+		:init:(0):j = 0
+140:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+141:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+142:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+143:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 1
+144:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+145:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+146:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+147:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 2
+148:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+149:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+150:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+151:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 3
+152:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+153:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+154:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+155:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 4
+156:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+157:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+158:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+159:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 5
+160:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+161:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+162:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+163:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 6
+164:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+165:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+166:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+167:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 7
+168:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+169:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+170:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+171:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 8
+172:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+173:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+174:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+175:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 9
+176:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+177:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+178:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+179:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 10
+180:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+181:	proc  0 (:init::1) proxy.pml:111 (state 22)	[else]
+182:	proc  0 (:init::1) proxy.pml:111 (state 23)	[goto :b2]
+183:	proc  0 (:init::1) proxy.pml:106 (state 27)	[i = (i+1)]
+		:init:(0):i = 2
+184:	proc  0 (:init::1) proxy.pml:115 (state 31)	[.(goto)]
+185:	proc  0 (:init::1) proxy.pml:106 (state 15)	[((i<=(3-1)))]
+186:	proc  0 (:init::1) proxy.pml:107 (state 16)	[staff_availability[i].staff_id = i]
+187:	proc  0 (:init::1) proxy.pml:109 (state 17)	[j = 0]
+		:init:(0):j = 0
+188:	proc  0 (:init::1) proxy.pml:109 (state 18)	[j = 0]
+		:init:(0):j = 0
+189:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+190:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+191:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+192:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 1
+193:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+194:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+195:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+196:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 2
+197:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+198:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+199:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+200:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 3
+201:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+202:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+203:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+204:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 4
+205:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+206:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+207:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+208:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 5
+209:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+210:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+211:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+212:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 6
+213:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+214:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+215:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+216:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 7
+217:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+218:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+219:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+220:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 8
+221:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+222:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+223:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+224:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 9
+225:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+226:	proc  0 (:init::1) proxy.pml:109 (state 19)	[((j<=(10-1)))]
+227:	proc  0 (:init::1) proxy.pml:110 (state 20)	[staff_availability[i].available_slots[j] = 1]
+228:	proc  0 (:init::1) proxy.pml:109 (state 21)	[j = (j+1)]
+		:init:(0):j = 10
+229:	proc  0 (:init::1) proxy.pml:112 (state 25)	[.(goto)]
+230:	proc  0 (:init::1) proxy.pml:111 (state 22)	[else]
+231:	proc  0 (:init::1) proxy.pml:111 (state 23)	[goto :b2]
+232:	proc  0 (:init::1) proxy.pml:106 (state 27)	[i = (i+1)]
+		:init:(0):i = 3
+233:	proc  0 (:init::1) proxy.pml:115 (state 31)	[.(goto)]
+234:	proc  0 (:init::1) proxy.pml:112 (state 28)	[else]
+235:	proc  0 (:init::1) proxy.pml:112 (state 29)	[goto :b1]
+Starting BookingSystem with pid 1
+236:	proc  0 (:init::1) creates proc  1 (BookingSystem)
+236:	proc  0 (:init::1) proxy.pml:115 (state 33)	[(run BookingSystem())]
+Starting NotificationSystem with pid 2
+237:	proc  0 (:init::1) creates proc  2 (NotificationSystem)
+237:	proc  0 (:init::1) proxy.pml:116 (state 34)	[(run NotificationSystem())]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+Starting User with pid 3
+238:	proc  0 (:init::1) creates proc  3 (User)
+238:	proc  0 (:init::1) proxy.pml:117 (state 35)	[(run User(1))]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+239:	proc  3 (User:1) proxy.pml:389 (state 1)	[((user_id==1))]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 3 (notification_channel): 
+240:	proc  3 (User:1) proxy.pml:392 (state 4)	[(1)]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 3 (notification_channel): 
+Starting User with pid 4
+241:	proc  0 (:init::1) creates proc  4 (User)
+241:	proc  0 (:init::1) proxy.pml:118 (state 36)	[(run User(2))]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 3 (notification_channel): 
+242:	proc  3 (User:1) proxy.pml:392 (state 5)	[client_1_completed_payment = 0]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 3 (notification_channel): 
+Starting Staff with pid 5
+243:	proc  0 (:init::1) creates proc  5 (Staff)
+243:	proc  0 (:init::1) proxy.pml:119 (state 37)	[(run Staff(1))]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 3 (notification_channel): 
+244:	proc  4 (User:1) proxy.pml:394 (state 8)	[else]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 3 (notification_channel): 
+245:	proc  3 (User:1) proxy.pml:394 (state 7)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 3 (notification_channel): 
+246:	proc  5 (Staff:1) proxy.pml:438 Send VIEW_SCHEDULE_REQUEST,1,0,0	-> queue 2 (staff_to_system)
+246:	proc  5 (Staff:1) proxy.pml:438 (state 4)	[staff_to_system!VIEW_SCHEDULE_REQUEST,staff_id,0,0]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 3 (notification_channel): 
+247:	proc  3 (User:1) proxy.pml:397 (state 11)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 3 (notification_channel): 
+248:	proc  3 (User:1) proxy.pml:424 (state 27)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 3 (notification_channel): 
+249:	proc  1 (BookingSystem:1) proxy.pml:360 Recv VIEW_SCHEDULE_REQUEST,1,0,0	<- queue 2 (staff_to_system)
+249:	proc  1 (BookingSystem:1) proxy.pml:360 (state 173)	[staff_to_system?msg_type,param1,param2,param3]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):param3 = 0
+		BookingSystem(1):param2 = 0
+		BookingSystem(1):param1 = 1
+		BookingSystem(1):msg_type = VIEW_SCHEDULE_REQUEST
+250:	proc  1 (BookingSystem:1) proxy.pml:364 (state 178)	[((msg_type==VIEW_SCHEDULE_REQUEST))]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+251:	proc  1 (BookingSystem:1) proxy.pml:325 (state 179)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+252:	proc  3 (User:1) proxy.pml:422 (state 25)	[goto :b10]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+Starting Staff with pid 6
+253:	proc  0 (:init::1) creates proc  6 (Staff)
+253:	proc  0 (:init::1) proxy.pml:120 (state 38)	[(run Staff(2))]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+254:	proc  4 (User:1) proxy.pml:394 (state 9)	[(1)]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+255:	proc  4 (User:1) proxy.pml:397 (state 11)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+256:	proc  6 (Staff:1) proxy.pml:433 Send UPDATE_AVAILABILITY,2,1,1	-> queue 2 (staff_to_system)
+256:	proc  6 (Staff:1) proxy.pml:433 (state 1)	[staff_to_system!UPDATE_AVAILABILITY,staff_id,1,1]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+257:	proc  1 (BookingSystem:1) proxy.pml:327 (state 180)	[appointments = 0]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):appointments = 0
+258:	proc  4 (User:1) proxy.pml:424 (state 27)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+259:	proc  4 (User:1) proxy.pml:422 (state 25)	[goto :b10]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+260:	proc  1 (BookingSystem:1) proxy.pml:327 (state 181)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+261:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+262:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+263:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+264:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+265:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+266:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 1
+267:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+268:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+269:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+270:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+271:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+272:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 2
+273:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+274:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+275:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+276:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+277:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+278:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 3
+279:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+280:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+281:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+282:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+283:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+284:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 4
+285:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+286:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+287:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+288:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+289:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+290:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 5
+291:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+292:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+293:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+294:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+295:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+296:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 6
+297:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+298:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+299:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+300:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+301:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+302:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 7
+303:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+304:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+305:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+306:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+307:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+308:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 8
+309:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+310:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+311:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+312:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+313:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+314:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 9
+315:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+316:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+317:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+318:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+319:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+320:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 10
+321:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+322:	proc  1 (BookingSystem:1) proxy.pml:332 (state 190)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+323:	proc  1 (BookingSystem:1) proxy.pml:332 (state 191)	[goto :b8]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+324:	proc  1 (BookingSystem:1) proxy.pml:334 Send SCHEDULE_RESPONSE,1,0,0	-> queue 4 (system_to_staff)
+324:	proc  1 (BookingSystem:1) proxy.pml:334 (state 195)	[system_to_staff!SCHEDULE_RESPONSE,param1,appointments,0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): [SCHEDULE_RESPONSE,1,0,0]
+		queue 3 (notification_channel): 
+325:	proc  5 (Staff:1) proxy.pml:439 Recv SCHEDULE_RESPONSE,1,0,0	<- queue 4 (system_to_staff)
+325:	proc  5 (Staff:1) proxy.pml:439 (state 5)	[system_to_staff?msg_type,param1,param2,response]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		Staff(5):response = 0
+		Staff(5):param2 = 0
+		Staff(5):param1 = 1
+		Staff(5):msg_type = SCHEDULE_RESPONSE
+326:	proc  5 (Staff:1) proxy.pml:440 (state 6)	[assert((msg_type==SCHEDULE_RESPONSE))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+327:	proc  1 (BookingSystem:1) proxy.pml:367 (state 198)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+328:	proc  1 (BookingSystem:1) proxy.pml:368 (state 200)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+329:	proc  5 (Staff:1) proxy.pml:443 (state 9)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+330:	proc  5 (Staff:1) proxy.pml:438 Send VIEW_SCHEDULE_REQUEST,1,0,0	-> queue 2 (staff_to_system)
+330:	proc  5 (Staff:1) proxy.pml:438 (state 4)	[staff_to_system!VIEW_SCHEDULE_REQUEST,staff_id,0,0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,2,1,1][VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+331:	proc  1 (BookingSystem:1) proxy.pml:360 Recv UPDATE_AVAILABILITY,2,1,1	<- queue 2 (staff_to_system)
+331:	proc  1 (BookingSystem:1) proxy.pml:360 (state 173)	[staff_to_system?msg_type,param1,param2,param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):param3 = 1
+		BookingSystem(1):param2 = 1
+		BookingSystem(1):param1 = 2
+		BookingSystem(1):msg_type = UPDATE_AVAILABILITY
+332:	proc  1 (BookingSystem:1) proxy.pml:361 (state 174)	[((msg_type==UPDATE_AVAILABILITY))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+333:	proc  1 (BookingSystem:1) proxy.pml:318 (state 175)	[staff_availability[param1].available_slots[param2] = param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+334:	proc  1 (BookingSystem:1) proxy.pml:319 Send AVAILABILITY_UPDATED,2,1,1	-> queue 4 (system_to_staff)
+334:	proc  1 (BookingSystem:1) proxy.pml:319 (state 176)	[system_to_staff!AVAILABILITY_UPDATED,param1,param2,param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): [AVAILABILITY_UPDATED,2,1,1]
+		queue 3 (notification_channel): 
+335:	proc  1 (BookingSystem:1) proxy.pml:367 (state 198)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): [AVAILABILITY_UPDATED,2,1,1]
+		queue 3 (notification_channel): 
+336:	proc  6 (Staff:1) proxy.pml:434 Recv AVAILABILITY_UPDATED,2,1,1	<- queue 4 (system_to_staff)
+336:	proc  6 (Staff:1) proxy.pml:434 (state 2)	[system_to_staff?msg_type,param1,param2,response]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		Staff(6):response = 1
+		Staff(6):param2 = 1
+		Staff(6):param1 = 2
+		Staff(6):msg_type = AVAILABILITY_UPDATED
+337:	proc  6 (Staff:1) proxy.pml:435 (state 3)	[assert((msg_type==AVAILABILITY_UPDATED))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+338:	proc  6 (Staff:1) proxy.pml:443 (state 9)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+339:	proc  6 (Staff:1) proxy.pml:438 Send VIEW_SCHEDULE_REQUEST,2,0,0	-> queue 2 (staff_to_system)
+339:	proc  6 (Staff:1) proxy.pml:438 (state 4)	[staff_to_system!VIEW_SCHEDULE_REQUEST,staff_id,0,0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0][VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+340:	proc  1 (BookingSystem:1) proxy.pml:368 (state 200)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0][VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+341:	proc  1 (BookingSystem:1) proxy.pml:360 Recv VIEW_SCHEDULE_REQUEST,1,0,0	<- queue 2 (staff_to_system)
+341:	proc  1 (BookingSystem:1) proxy.pml:360 (state 173)	[staff_to_system?msg_type,param1,param2,param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):param3 = 0
+		BookingSystem(1):param2 = 0
+		BookingSystem(1):param1 = 1
+		BookingSystem(1):msg_type = VIEW_SCHEDULE_REQUEST
+342:	proc  1 (BookingSystem:1) proxy.pml:364 (state 178)	[((msg_type==VIEW_SCHEDULE_REQUEST))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+343:	proc  1 (BookingSystem:1) proxy.pml:325 (state 179)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+344:	proc  1 (BookingSystem:1) proxy.pml:327 (state 180)	[appointments = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):appointments = 0
+345:	proc  1 (BookingSystem:1) proxy.pml:327 (state 181)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+346:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+347:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+348:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+349:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+350:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+351:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 1
+352:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+353:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+354:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+355:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+356:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+357:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 2
+358:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+359:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+360:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+361:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+362:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+363:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 3
+364:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+365:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+366:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+367:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+368:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+369:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 4
+370:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+371:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+372:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+373:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+374:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+375:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 5
+376:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+377:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+378:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+379:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+380:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+381:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 6
+382:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+383:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+384:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+385:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+386:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+387:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 7
+388:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+389:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+390:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+391:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+392:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+393:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 8
+394:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+395:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+396:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+397:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+398:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+399:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 9
+400:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+401:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+402:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+403:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+404:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+405:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 10
+406:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+407:	proc  1 (BookingSystem:1) proxy.pml:332 (state 190)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+408:	proc  1 (BookingSystem:1) proxy.pml:332 (state 191)	[goto :b8]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+409:	proc  1 (BookingSystem:1) proxy.pml:334 Send SCHEDULE_RESPONSE,1,0,0	-> queue 4 (system_to_staff)
+409:	proc  1 (BookingSystem:1) proxy.pml:334 (state 195)	[system_to_staff!SCHEDULE_RESPONSE,param1,appointments,0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): [SCHEDULE_RESPONSE,1,0,0]
+		queue 3 (notification_channel): 
+410:	proc  6 (Staff:1) proxy.pml:439 Recv SCHEDULE_RESPONSE,1,0,0	<- queue 4 (system_to_staff)
+410:	proc  6 (Staff:1) proxy.pml:439 (state 5)	[system_to_staff?msg_type,param1,param2,response]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		Staff(6):response = 0
+		Staff(6):param2 = 0
+		Staff(6):param1 = 1
+		Staff(6):msg_type = SCHEDULE_RESPONSE
+411:	proc  1 (BookingSystem:1) proxy.pml:367 (state 198)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+412:	proc  6 (Staff:1) proxy.pml:440 (state 6)	[assert((msg_type==SCHEDULE_RESPONSE))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+413:	proc  1 (BookingSystem:1) proxy.pml:368 (state 200)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,2,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+414:	proc  1 (BookingSystem:1) proxy.pml:360 Recv VIEW_SCHEDULE_REQUEST,2,0,0	<- queue 2 (staff_to_system)
+414:	proc  1 (BookingSystem:1) proxy.pml:360 (state 173)	[staff_to_system?msg_type,param1,param2,param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):param3 = 0
+		BookingSystem(1):param2 = 0
+		BookingSystem(1):param1 = 2
+		BookingSystem(1):msg_type = VIEW_SCHEDULE_REQUEST
+415:	proc  1 (BookingSystem:1) proxy.pml:364 (state 178)	[((msg_type==VIEW_SCHEDULE_REQUEST))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+416:	proc  6 (Staff:1) proxy.pml:443 (state 9)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+417:	proc  1 (BookingSystem:1) proxy.pml:325 (state 179)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+418:	proc  1 (BookingSystem:1) proxy.pml:327 (state 180)	[appointments = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):appointments = 0
+419:	proc  6 (Staff:1) proxy.pml:441 (state 7)	[goto :b11]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+419:	proc  6 (Staff:1)                               terminates
+420:	proc  1 (BookingSystem:1) proxy.pml:327 (state 181)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+421:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+422:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+423:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+424:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+425:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+426:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 1
+427:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+428:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+429:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+430:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+431:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+432:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 2
+433:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+434:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+435:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+436:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+437:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+438:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 3
+439:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+440:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+441:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+442:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+443:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+444:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 4
+445:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+446:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+447:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+448:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+449:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+450:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 5
+451:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+452:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+453:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+454:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+455:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+456:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 6
+457:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+458:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+459:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+460:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+461:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+462:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 7
+463:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+464:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+465:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+466:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+467:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+468:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 8
+469:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+470:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+471:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+472:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+473:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+474:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 9
+475:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+476:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+477:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+478:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+479:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+480:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 10
+481:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+482:	proc  1 (BookingSystem:1) proxy.pml:332 (state 190)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+483:	proc  1 (BookingSystem:1) proxy.pml:332 (state 191)	[goto :b8]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+484:	proc  1 (BookingSystem:1) proxy.pml:334 Send SCHEDULE_RESPONSE,2,0,0	-> queue 4 (system_to_staff)
+484:	proc  1 (BookingSystem:1) proxy.pml:334 (state 195)	[system_to_staff!SCHEDULE_RESPONSE,param1,appointments,0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): [SCHEDULE_RESPONSE,2,0,0]
+		queue 3 (notification_channel): 
+485:	proc  5 (Staff:1) proxy.pml:439 Recv SCHEDULE_RESPONSE,2,0,0	<- queue 4 (system_to_staff)
+485:	proc  5 (Staff:1) proxy.pml:439 (state 5)	[system_to_staff?msg_type,param1,param2,response]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		Staff(5):response = 0
+		Staff(5):param2 = 0
+		Staff(5):param1 = 2
+		Staff(5):msg_type = SCHEDULE_RESPONSE
+486:	proc  5 (Staff:1) proxy.pml:440 (state 6)	[assert((msg_type==SCHEDULE_RESPONSE))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+487:	proc  1 (BookingSystem:1) proxy.pml:367 (state 198)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+488:	proc  1 (BookingSystem:1) proxy.pml:368 (state 200)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+489:	proc  5 (Staff:1) proxy.pml:443 (state 9)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+490:	proc  5 (Staff:1) proxy.pml:438 Send VIEW_SCHEDULE_REQUEST,1,0,0	-> queue 2 (staff_to_system)
+490:	proc  5 (Staff:1) proxy.pml:438 (state 4)	[staff_to_system!VIEW_SCHEDULE_REQUEST,staff_id,0,0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+491:	proc  1 (BookingSystem:1) proxy.pml:360 Recv VIEW_SCHEDULE_REQUEST,1,0,0	<- queue 2 (staff_to_system)
+491:	proc  1 (BookingSystem:1) proxy.pml:360 (state 173)	[staff_to_system?msg_type,param1,param2,param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):param3 = 0
+		BookingSystem(1):param2 = 0
+		BookingSystem(1):param1 = 1
+		BookingSystem(1):msg_type = VIEW_SCHEDULE_REQUEST
+492:	proc  1 (BookingSystem:1) proxy.pml:364 (state 178)	[((msg_type==VIEW_SCHEDULE_REQUEST))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+493:	proc  1 (BookingSystem:1) proxy.pml:325 (state 179)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+494:	proc  1 (BookingSystem:1) proxy.pml:327 (state 180)	[appointments = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):appointments = 0
+495:	proc  1 (BookingSystem:1) proxy.pml:327 (state 181)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+496:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+497:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+498:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+499:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+500:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+501:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 1
+502:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+503:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+504:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+505:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+506:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+507:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 2
+508:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+509:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+510:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+511:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+512:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+513:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 3
+514:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+515:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+516:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+517:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+518:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+519:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 4
+520:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+521:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+522:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+523:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+524:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+525:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 5
+526:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+527:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+528:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+529:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+530:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+531:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 6
+532:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+533:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+534:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+535:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+536:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+537:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 7
+538:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+539:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+540:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+541:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+542:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+543:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 8
+544:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+545:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+546:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+547:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+548:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+549:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 9
+550:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+551:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+552:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+553:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+554:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+555:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 10
+556:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+557:	proc  1 (BookingSystem:1) proxy.pml:332 (state 190)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+558:	proc  1 (BookingSystem:1) proxy.pml:332 (state 191)	[goto :b8]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+559:	proc  1 (BookingSystem:1) proxy.pml:334 Send SCHEDULE_RESPONSE,1,0,0	-> queue 4 (system_to_staff)
+559:	proc  1 (BookingSystem:1) proxy.pml:334 (state 195)	[system_to_staff!SCHEDULE_RESPONSE,param1,appointments,0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): [SCHEDULE_RESPONSE,1,0,0]
+		queue 3 (notification_channel): 
+560:	proc  5 (Staff:1) proxy.pml:439 Recv SCHEDULE_RESPONSE,1,0,0	<- queue 4 (system_to_staff)
+560:	proc  5 (Staff:1) proxy.pml:439 (state 5)	[system_to_staff?msg_type,param1,param2,response]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		Staff(5):response = 0
+		Staff(5):param2 = 0
+		Staff(5):param1 = 1
+		Staff(5):msg_type = SCHEDULE_RESPONSE
+561:	proc  1 (BookingSystem:1) proxy.pml:367 (state 198)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+562:	proc  1 (BookingSystem:1) proxy.pml:368 (state 200)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+563:	proc  5 (Staff:1) proxy.pml:440 (state 6)	[assert((msg_type==SCHEDULE_RESPONSE))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+564:	proc  5 (Staff:1) proxy.pml:443 (state 9)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+565:	proc  5 (Staff:1) proxy.pml:433 Send UPDATE_AVAILABILITY,1,1,1	-> queue 2 (staff_to_system)
+565:	proc  5 (Staff:1) proxy.pml:433 (state 1)	[staff_to_system!UPDATE_AVAILABILITY,staff_id,1,1]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [UPDATE_AVAILABILITY,1,1,1]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+566:	proc  1 (BookingSystem:1) proxy.pml:360 Recv UPDATE_AVAILABILITY,1,1,1	<- queue 2 (staff_to_system)
+566:	proc  1 (BookingSystem:1) proxy.pml:360 (state 173)	[staff_to_system?msg_type,param1,param2,param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):param3 = 1
+		BookingSystem(1):param2 = 1
+		BookingSystem(1):param1 = 1
+		BookingSystem(1):msg_type = UPDATE_AVAILABILITY
+567:	proc  1 (BookingSystem:1) proxy.pml:361 (state 174)	[((msg_type==UPDATE_AVAILABILITY))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+568:	proc  1 (BookingSystem:1) proxy.pml:318 (state 175)	[staff_availability[param1].available_slots[param2] = param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+569:	proc  1 (BookingSystem:1) proxy.pml:319 Send AVAILABILITY_UPDATED,1,1,1	-> queue 4 (system_to_staff)
+569:	proc  1 (BookingSystem:1) proxy.pml:319 (state 176)	[system_to_staff!AVAILABILITY_UPDATED,param1,param2,param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): [AVAILABILITY_UPDATED,1,1,1]
+		queue 3 (notification_channel): 
+570:	proc  5 (Staff:1) proxy.pml:434 Recv AVAILABILITY_UPDATED,1,1,1	<- queue 4 (system_to_staff)
+570:	proc  5 (Staff:1) proxy.pml:434 (state 2)	[system_to_staff?msg_type,param1,param2,response]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		Staff(5):response = 1
+		Staff(5):param2 = 1
+		Staff(5):param1 = 1
+		Staff(5):msg_type = AVAILABILITY_UPDATED
+571:	proc  5 (Staff:1) proxy.pml:435 (state 3)	[assert((msg_type==AVAILABILITY_UPDATED))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+572:	proc  5 (Staff:1) proxy.pml:443 (state 9)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+573:	proc  5 (Staff:1) proxy.pml:438 Send VIEW_SCHEDULE_REQUEST,1,0,0	-> queue 2 (staff_to_system)
+573:	proc  5 (Staff:1) proxy.pml:438 (state 4)	[staff_to_system!VIEW_SCHEDULE_REQUEST,staff_id,0,0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+574:	proc  1 (BookingSystem:1) proxy.pml:367 (state 198)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+575:	proc  1 (BookingSystem:1) proxy.pml:368 (state 200)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): [VIEW_SCHEDULE_REQUEST,1,0,0]
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+576:	proc  1 (BookingSystem:1) proxy.pml:360 Recv VIEW_SCHEDULE_REQUEST,1,0,0	<- queue 2 (staff_to_system)
+576:	proc  1 (BookingSystem:1) proxy.pml:360 (state 173)	[staff_to_system?msg_type,param1,param2,param3]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):param3 = 0
+		BookingSystem(1):param2 = 0
+		BookingSystem(1):param1 = 1
+		BookingSystem(1):msg_type = VIEW_SCHEDULE_REQUEST
+577:	proc  1 (BookingSystem:1) proxy.pml:364 (state 178)	[((msg_type==VIEW_SCHEDULE_REQUEST))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+578:	proc  1 (BookingSystem:1) proxy.pml:325 (state 179)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+579:	proc  1 (BookingSystem:1) proxy.pml:327 (state 180)	[appointments = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):appointments = 0
+580:	proc  1 (BookingSystem:1) proxy.pml:327 (state 181)	[i = 0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 0
+581:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+582:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+583:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+584:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+585:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+586:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 1
+587:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+588:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+589:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+590:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+591:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+592:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 2
+593:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+594:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+595:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+596:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+597:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+598:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 3
+599:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+600:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+601:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+602:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+603:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+604:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 4
+605:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+606:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+607:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+608:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+609:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+610:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 5
+611:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+612:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+613:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+614:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+615:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+616:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 6
+617:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+618:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+619:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+620:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+621:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+622:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 7
+623:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+624:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+625:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+626:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+627:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+628:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 8
+629:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+630:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+631:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+632:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+633:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+634:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 9
+635:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+636:	proc  1 (BookingSystem:1) proxy.pml:327 (state 182)	[((i<=(10-1)))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+spin: proxy.pml:328, Error: value (-1->255 (8)) truncated in assignment
+637:	proc  1 (BookingSystem:1) proxy.pml:330 (state 185)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+638:	proc  1 (BookingSystem:1) proxy.pml:330 (state 186)	[(1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+639:	proc  1 (BookingSystem:1) proxy.pml:332 (state 188)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+640:	proc  1 (BookingSystem:1) proxy.pml:327 (state 189)	[i = (i+1)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		BookingSystem(1):i = 10
+641:	proc  1 (BookingSystem:1) proxy.pml:334 (state 193)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+642:	proc  1 (BookingSystem:1) proxy.pml:332 (state 190)	[else]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+643:	proc  1 (BookingSystem:1) proxy.pml:332 (state 191)	[goto :b8]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+644:	proc  1 (BookingSystem:1) proxy.pml:334 Send SCHEDULE_RESPONSE,1,0,0	-> queue 4 (system_to_staff)
+644:	proc  1 (BookingSystem:1) proxy.pml:334 (state 195)	[system_to_staff!SCHEDULE_RESPONSE,param1,appointments,0]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): [SCHEDULE_RESPONSE,1,0,0]
+		queue 3 (notification_channel): 
+645:	proc  1 (BookingSystem:1) proxy.pml:367 (state 198)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): [SCHEDULE_RESPONSE,1,0,0]
+		queue 3 (notification_channel): 
+646:	proc  5 (Staff:1) proxy.pml:439 Recv SCHEDULE_RESPONSE,1,0,0	<- queue 4 (system_to_staff)
+646:	proc  5 (Staff:1) proxy.pml:439 (state 5)	[system_to_staff?msg_type,param1,param2,response]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+		Staff(5):response = 0
+		Staff(5):param2 = 0
+		Staff(5):param1 = 1
+		Staff(5):msg_type = SCHEDULE_RESPONSE
+647:	proc  1 (BookingSystem:1) proxy.pml:368 (state 200)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+648:	proc  5 (Staff:1) proxy.pml:440 (state 6)	[assert((msg_type==SCHEDULE_RESPONSE))]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+649:	proc  5 (Staff:1) proxy.pml:443 (state 9)	[.(goto)]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+650:	proc  5 (Staff:1) proxy.pml:441 (state 7)	[goto :b11]
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+650:	proc  5 (Staff:1)                           terminates
+650:	proc  4 (User:1)                       terminates
+650:	proc  3 (User:1)                   terminates
+      timeout
+#processes: 3
+		time_slots[0].slot_id = 0
+		time_slots[0].service_type = 22
+		time_slots[0].staff_id = -1
+		time_slots[0].status = 25
+		time_slots[0].user_id = -1
+		time_slots[1].slot_id = 1
+		time_slots[1].service_type = 22
+		time_slots[1].staff_id = -1
+		time_slots[1].status = 25
+		time_slots[1].user_id = -1
+		time_slots[2].slot_id = 2
+		time_slots[2].service_type = 22
+		time_slots[2].staff_id = -1
+		time_slots[2].status = 25
+		time_slots[2].user_id = -1
+		time_slots[3].slot_id = 3
+		time_slots[3].service_type = 22
+		time_slots[3].staff_id = -1
+		time_slots[3].status = 25
+		time_slots[3].user_id = -1
+		time_slots[4].slot_id = 4
+		time_slots[4].service_type = 22
+		time_slots[4].staff_id = -1
+		time_slots[4].status = 25
+		time_slots[4].user_id = -1
+		time_slots[5].slot_id = 5
+		time_slots[5].service_type = 22
+		time_slots[5].staff_id = -1
+		time_slots[5].status = 25
+		time_slots[5].user_id = -1
+		time_slots[6].slot_id = 6
+		time_slots[6].service_type = 22
+		time_slots[6].staff_id = -1
+		time_slots[6].status = 25
+		time_slots[6].user_id = -1
+		time_slots[7].slot_id = 7
+		time_slots[7].service_type = 22
+		time_slots[7].staff_id = -1
+		time_slots[7].status = 25
+		time_slots[7].user_id = -1
+		time_slots[8].slot_id = 8
+		time_slots[8].service_type = 22
+		time_slots[8].staff_id = -1
+		time_slots[8].status = 25
+		time_slots[8].user_id = -1
+		time_slots[9].slot_id = 9
+		time_slots[9].service_type = 22
+		time_slots[9].staff_id = -1
+		time_slots[9].status = 25
+		time_slots[9].user_id = -1
+		bookings[0].booking_id = 0
+		bookings[0].slot_id = 0
+		bookings[0].user_id = 0
+		bookings[0].staff_id = 0
+		bookings[0].service_type = 0
+		bookings[0].status = 0
+		bookings[1].booking_id = 0
+		bookings[1].slot_id = 0
+		bookings[1].user_id = 0
+		bookings[1].staff_id = 0
+		bookings[1].service_type = 0
+		bookings[1].status = 0
+		bookings[2].booking_id = 0
+		bookings[2].slot_id = 0
+		bookings[2].user_id = 0
+		bookings[2].staff_id = 0
+		bookings[2].service_type = 0
+		bookings[2].status = 0
+		bookings[3].booking_id = 0
+		bookings[3].slot_id = 0
+		bookings[3].user_id = 0
+		bookings[3].staff_id = 0
+		bookings[3].service_type = 0
+		bookings[3].status = 0
+		bookings[4].booking_id = 0
+		bookings[4].slot_id = 0
+		bookings[4].user_id = 0
+		bookings[4].staff_id = 0
+		bookings[4].service_type = 0
+		bookings[4].status = 0
+		staff_availability[0].staff_id = 0
+		staff_availability[0].available_slots[0] = 1
+		staff_availability[0].available_slots[1] = 1
+		staff_availability[0].available_slots[2] = 1
+		staff_availability[0].available_slots[3] = 1
+		staff_availability[0].available_slots[4] = 1
+		staff_availability[0].available_slots[5] = 1
+		staff_availability[0].available_slots[6] = 1
+		staff_availability[0].available_slots[7] = 1
+		staff_availability[0].available_slots[8] = 1
+		staff_availability[0].available_slots[9] = 1
+		staff_availability[1].staff_id = 1
+		staff_availability[1].available_slots[0] = 1
+		staff_availability[1].available_slots[1] = 1
+		staff_availability[1].available_slots[2] = 1
+		staff_availability[1].available_slots[3] = 1
+		staff_availability[1].available_slots[4] = 1
+		staff_availability[1].available_slots[5] = 1
+		staff_availability[1].available_slots[6] = 1
+		staff_availability[1].available_slots[7] = 1
+		staff_availability[1].available_slots[8] = 1
+		staff_availability[1].available_slots[9] = 1
+		staff_availability[2].staff_id = 2
+		staff_availability[2].available_slots[0] = 1
+		staff_availability[2].available_slots[1] = 1
+		staff_availability[2].available_slots[2] = 1
+		staff_availability[2].available_slots[3] = 1
+		staff_availability[2].available_slots[4] = 1
+		staff_availability[2].available_slots[5] = 1
+		staff_availability[2].available_slots[6] = 1
+		staff_availability[2].available_slots[7] = 1
+		staff_availability[2].available_slots[8] = 1
+		staff_availability[2].available_slots[9] = 1
+		next_booking_id = 0
+		client_1_initiated_booking = 0
+		client_2_initiated_booking = 0
+		unique_slot_booked_by_client_1 = 0
+		unique_slot_booked_by_client_2 = 0
+		unique_slot_is_available = 1
+		client_1_completed_payment = 0
+		client_1_present_for_service = 0
+		client_1_finished_booking = 0
+		client_1_cancelled_booking = 0
+		queue 1 (user_to_system): 
+		queue 5 (system_to_user): 
+		queue 2 (staff_to_system): 
+		queue 4 (system_to_staff): 
+		queue 3 (notification_channel): 
+650:	proc  2 (NotificationSystem:1) proxy.pml:375 (state 3)
+		NotificationSystem(2):param = 0
+		NotificationSystem(2):user_id = 0
+		NotificationSystem(2):msg_type = 0
+650:	proc  1 (BookingSystem:1) proxy.pml:342 (state 199)
+		BookingSystem(1):appointments = 0
+		BookingSystem(1):i = 10
+		BookingSystem(1):user_bookings = 0
+		BookingSystem(1):i = 0
+		BookingSystem(1):found = 0
+		BookingSystem(1):i = 0
+		BookingSystem(1):found = 0
+		BookingSystem(1):i = 0
+		BookingSystem(1):staff_id = 0
+		BookingSystem(1):available_count = 0
+		BookingSystem(1):i = 0
+		BookingSystem(1):param3 = 0
+		BookingSystem(1):param2 = 0
+		BookingSystem(1):param1 = 1
+		BookingSystem(1):msg_type = VIEW_SCHEDULE_REQUEST
+650:	proc  0 (:init::1) proxy.pml:121 (state 39) <valid end state>
+		:init:(0):j = 10
+		:init:(0):i = 3
+7 processes created
+Command exited with error code 50.
