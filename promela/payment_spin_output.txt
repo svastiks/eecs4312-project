@@ -1,77 +1,179 @@
- 0:    proc  - (:root:) creates proc  0 (:init:)
+@Mac project % spin -g -l -p -r -s payment.pml
+  0:    proc  - (:root:) creates proc  0 (:init:)
+ltl payment_before_service: [] ((! (client_1_present_for_service)) || (client_1_completed_payment))
+ltl no_double_booking: [] (((! (unique_slot_booked_by_client_1)) || (! (unique_slot_booked_by_client_2))) && ((! (unique_slot_booked_by_client_2)) || (! (unique_slot_booked_by_client_1))))
+ltl booking_completion: [] ((! (client_1_initiated_booking)) || (<> (client_1_finished_booking)))
+ltl slot_availability_after_cancellation: [] ((! (client_1_cancelled_booking)) || (<> (unique_slot_is_available)))
 Starting Client with pid 1
   1:    proc  0 (:init::1) creates proc  1 (Client)
-  1:    proc  0 (:init::1) payment.pml:173 (state 1)    [(run Client())]
+  1:    proc  0 (:init::1) payment.pml:265 (state 1)    [(run Client())]
 Starting PaymentProcessor with pid 2
   2:    proc  0 (:init::1) creates proc  2 (PaymentProcessor)
-  2:    proc  0 (:init::1) payment.pml:174 (state 2)    [(run PaymentProcessor())]
+  2:    proc  0 (:init::1) payment.pml:266 (state 2)    [(run PaymentProcessor())]
 Starting InvoiceSystem with pid 3
   3:    proc  0 (:init::1) creates proc  3 (InvoiceSystem)
-  3:    proc  0 (:init::1) payment.pml:175 (state 3)    [(run InvoiceSystem())]
+  3:    proc  0 (:init::1) payment.pml:267 (state 3)    [(run InvoiceSystem())]
 Starting RecurringBilling with pid 4
   4:    proc  0 (:init::1) creates proc  4 (RecurringBilling)
-  4:    proc  0 (:init::1) payment.pml:176 (state 4)    [(run RecurringBilling())]
+  4:    proc  0 (:init::1) payment.pml:268 (state 4)    [(run RecurringBilling())]
 Starting FinanceReport with pid 5
   5:    proc  0 (:init::1) creates proc  5 (FinanceReport)
-  5:    proc  0 (:init::1) payment.pml:177 (state 5)    [(run FinanceReport())]
-  6:    proc  1 (Client:1) payment.pml:74 (state 7)     [method = insurance]
+  5:    proc  0 (:init::1) payment.pml:269 (state 5)    [(run FinanceReport())]
+Starting ServiceAccess with pid 6
+  6:    proc  0 (:init::1) creates proc  6 (ServiceAccess)
+  6:    proc  0 (:init::1) payment.pml:270 (state 6)    [(run ServiceAccess())]
+  7:    proc  1 (Client:1) payment.pml:92 (state 1)     [(1)]
+  8:    proc  1 (Client:1) payment.pml:93 (state 2)     [client_1_initiated_booking = 1]
+                client_1_initiated_booking = 1
+  9:    proc  6 (ServiceAccess:1) payment.pml:243 (state 1)     [(1)]
+          Client 1 initiated booking
+ 10:    proc  1 (Client:1) payment.pml:94 (state 3)     [printf('Client 1 initiated booking\\n')]
+ 11:    proc  1 (Client:1) payment.pml:96 (state 4)     [(unique_slot_is_available)]
+ 12:    proc  1 (Client:1) payment.pml:97 (state 5)     [unique_slot_booked_by_client_1 = 1]
+                unique_slot_booked_by_client_1 = 1
+                queue 3 (finance_log): 
+ 13:    proc  6 (ServiceAccess:1) payment.pml:244 (state 2)     [client_1_present_for_service = 1]
+                client_1_present_for_service = 1
+                queue 3 (finance_log): 
+ 14:    proc  6 (ServiceAccess:1) payment.pml:248 (state 5)     [else]
+                queue 3 (finance_log): 
+                              Service access denied - payment required
+ 15:    proc  6 (ServiceAccess:1) payment.pml:249 (state 6)     [printf('Service access denied - payment required\\n')]
+                queue 3 (finance_log): 
+ 16:    proc  6 (ServiceAccess:1) payment.pml:253 (state 8)     [.(goto)]
+                queue 3 (finance_log): 
+ 17:    proc  6 (ServiceAccess:1) payment.pml:254 (state 9)     [(1)]
+                queue 3 (finance_log): 
+ 18:    proc  1 (Client:1) payment.pml:98 (state 6)     [unique_slot_is_available = 0]
+                unique_slot_is_available = 0
+                queue 3 (finance_log): 
+ 19:    proc  1 (Client:1) payment.pml:103 (state 11)   [.(goto)]
+                queue 3 (finance_log): 
+ 20:    proc  1 (Client:1) payment.pml:117 (state 24)   [.(goto)]
+                queue 3 (finance_log): 
+ 21:    proc  6 (ServiceAccess:1) payment.pml:255 (state 10)    [client_1_cancelled_booking = 1]
+                client_1_cancelled_booking = 1
+                queue 3 (finance_log): 
+ 22:    proc  1 (Client:1) payment.pml:118 (state 25)   [((unique_slot_booked_by_client_1||unique_slot_booked_by_client_2))]
+                queue 3 (finance_log): 
+ 23:    proc  6 (ServiceAccess:1) payment.pml:256 (state 11)    [unique_slot_booked_by_client_1 = 0]
+                unique_slot_booked_by_client_1 = 0
+                queue 3 (finance_log): 
+ 24:    proc  6 (ServiceAccess:1) payment.pml:257 (state 12)    [unique_slot_is_available = 1]
+                unique_slot_is_available = 1
+                queue 3 (finance_log): 
+ 25:    proc  1 (Client:1) payment.pml:124 (state 32)   [method = insurance]
+                queue 3 (finance_log): 
                 Client(1):method = insurance
-  7:    proc  1 (Client:1) payment.pml:74 (state 8)     [(1)]
-  8:    proc  1 (Client:1) payment.pml:77 (state 10)    [.(goto)]
-                queue 2 (finance_log): 
+ 26:    proc  1 (Client:1) payment.pml:124 (state 33)   [(1)]
+                queue 3 (finance_log): 
+ 27:    proc  1 (Client:1) payment.pml:127 (state 35)   [.(goto)]
+                queue 3 (finance_log): 
+                              Booking cancelled
+ 28:    proc  6 (ServiceAccess:1) payment.pml:258 (state 13)    [printf('Booking cancelled\\n')]
+                queue 3 (finance_log): 
           Client chose payment method: insurance
-  9:    proc  1 (Client:1) payment.pml:77 (state 11)    [printf('Client chose payment method: %e\\n',method)]
-                queue 2 (finance_log): 
- 10:    proc  1 (Client:1) payment.pml:78 (state 12)    [payment_request!method]
- 10:    proc  2 (PaymentProcessor:1) payment.pml:84 (state 1)   [payment_request?method]
- 10:    proc  1 (Client:1) payment.pml:78 Sent insurance        -> queue 3 (payment_request)
- 10:    proc  2 (PaymentProcessor:1) payment.pml:84 Recv insurance      <- queue 3 (payment_request)
-                queue 2 (finance_log): 
+ 29:    proc  1 (Client:1) payment.pml:127 (state 36)   [printf('Client chose payment method: %e\\n',method)]
+                queue 3 (finance_log): 
+ 30:    proc  1 (Client:1) payment.pml:128 (state 37)   [payment_request!method]
+ 30:    proc  2 (PaymentProcessor:1) payment.pml:151 (state 1)  [payment_request?method]
+ 30:    proc  1 (Client:1) payment.pml:128 Sent insurance       -> queue 1 (payment_request)
+ 30:    proc  2 (PaymentProcessor:1) payment.pml:151 Recv insurance     <- queue 1 (payment_request)
+                queue 3 (finance_log): 
                 PaymentProcessor(2):method = insurance
+ 31:    proc  1 (Client:1) payment.pml:134 (state 42) <valid end state> [(1)]
+                queue 3 (finance_log): 
               PaymentProcessor received payment using: insurance
- 11:    proc  2 (PaymentProcessor:1) payment.pml:85 (state 2)   [printf('PaymentProcessor received payment using: %e\\n',method)]
-                queue 2 (finance_log): 
- 12:    proc  2 (PaymentProcessor:1) payment.pml:89 (state 3)   [((method==insurance))]
-                queue 2 (finance_log): 
- 13:    proc  2 (PaymentProcessor:1) payment.pml:39 (state 4)   [eligible = 0]
-                queue 2 (finance_log): 
+ 32:    proc  2 (PaymentProcessor:1) payment.pml:152 (state 2)  [printf('PaymentProcessor received payment using: %e\\n',method)]
+                queue 3 (finance_log): 
+ 33:    proc  1 (Client:1) payment.pml:139 (state 45)   [method = debit]
+                queue 3 (finance_log): 
+                Client(1):method = debit
+ 34:    proc  6 (ServiceAccess:1) payment.pml:261 (state 17)    [.(goto)]
+                queue 3 (finance_log): 
+ 35:    proc  2 (PaymentProcessor:1) payment.pml:156 (state 3)  [((method==insurance))]
+                queue 3 (finance_log): 
+ 36:    proc  2 (PaymentProcessor:1) payment.pml:60 (state 4)   [eligible = 0]
+                queue 3 (finance_log): 
                 PaymentProcessor(2):eligible = 0
- 14:    proc  2 (PaymentProcessor:1) payment.pml:40 (state 5)   [((_pid>0))]
-                queue 2 (finance_log): 
- 15:    proc  2 (PaymentProcessor:1) payment.pml:41 (state 6)   [eligible = 1]
-                queue 2 (finance_log): 
+ 37:    proc  2 (PaymentProcessor:1) payment.pml:61 (state 5)   [((_pid>0))]
+                queue 3 (finance_log): 
+ 38:    proc  2 (PaymentProcessor:1) payment.pml:62 (state 6)   [eligible = 1]
+                queue 3 (finance_log): 
                 PaymentProcessor(2):eligible = 1
               Insurance eligibility verified for user 2
- 16:    proc  2 (PaymentProcessor:1) payment.pml:42 (state 7)   [printf('Insurance eligibility verified for user %d\\n',_pid)]
-                queue 2 (finance_log): 
- 17:    proc  2 (PaymentProcessor:1) payment.pml:47 (state 12)  [.(goto)]
-                queue 2 (finance_log): 
- 18:    proc  2 (PaymentProcessor:1) payment.pml:90 (state 13)  [validated = eligible]
-                queue 2 (finance_log): 
+ 39:    proc  2 (PaymentProcessor:1) payment.pml:63 (state 7)   [printf('Insurance eligibility verified for user %d\\n',_pid)]
+                queue 3 (finance_log): 
+ 40:    proc  6 (ServiceAccess:1) payment.pml:261 (state 18)    [goto :b3]
+                queue 3 (finance_log): 
+ 41:    proc  1 (Client:1) payment.pml:139 (state 46)   [(1)]
+                queue 3 (finance_log): 
+ 42:    proc  1 (Client:1) payment.pml:144 (state 52)   [.(goto)]
+                queue 3 (finance_log): 
+          Client chose payment method: debit
+ 43:    proc  1 (Client:1) payment.pml:144 (state 53)   [printf('Client chose payment method: %e\\n',method)]
+                queue 3 (finance_log): 
+ 43:    proc  6 (ServiceAccess:1)                               terminates
+ 44:    proc  2 (PaymentProcessor:1) payment.pml:68 (state 12)  [.(goto)]
+                queue 3 (finance_log): 
+ 45:    proc  2 (PaymentProcessor:1) payment.pml:157 (state 13) [validated = eligible]
+                queue 3 (finance_log): 
                 PaymentProcessor(2):validated = 1
- 19:    proc  2 (PaymentProcessor:1) payment.pml:98 (state 30)  [.(goto)]
-                queue 2 (finance_log): 
- 20:    proc  2 (PaymentProcessor:1) payment.pml:99 (state 31)  [(validated)]
-                queue 2 (finance_log): 
+ 46:    proc  2 (PaymentProcessor:1) payment.pml:165 (state 30) [.(goto)]
+                queue 3 (finance_log): 
+ 47:    proc  2 (PaymentProcessor:1) payment.pml:166 (state 31) [(validated)]
+                queue 3 (finance_log): 
               Payment succeeded
- 21:    proc  2 (PaymentProcessor:1) payment.pml:100 (state 32) [printf('Payment succeeded\\n')]
-                queue 2 (finance_log): 
- 22:    proc  2 (PaymentProcessor:1) payment.pml:101 (state 33) [invoice_channel!method]
- 22:    proc  3 (InvoiceSystem:1) payment.pml:115 (state 1)     [invoice_channel?method]
- 22:    proc  2 (PaymentProcessor:1) payment.pml:101 Sent insurance     -> queue 1 (invoice_channel)
- 22:    proc  3 (InvoiceSystem:1) payment.pml:115 Recv insurance        <- queue 1 (invoice_channel)
-                queue 2 (finance_log): 
+ 48:    proc  2 (PaymentProcessor:1) payment.pml:167 (state 32) [printf('Payment succeeded\\n')]
+                queue 3 (finance_log): 
+ 49:    proc  2 (PaymentProcessor:1) payment.pml:168 (state 33) [client_1_completed_payment = 1]
+                client_1_completed_payment = 1
+                queue 3 (finance_log): 
+ 50:    proc  2 (PaymentProcessor:1) payment.pml:169 (state 34) [invoice_channel!method]
+ 50:    proc  3 (InvoiceSystem:1) payment.pml:185 (state 1)     [invoice_channel?method]
+ 50:    proc  2 (PaymentProcessor:1) payment.pml:169 Sent insurance     -> queue 2 (invoice_channel)
+ 50:    proc  3 (InvoiceSystem:1) payment.pml:185 Recv insurance        <- queue 2 (invoice_channel)
+                queue 3 (finance_log): 
                 InvoiceSystem(3):current_invoice.invoice_id = 0
                 InvoiceSystem(3):current_invoice.status = 0
                 InvoiceSystem(3):current_invoice.payment_method = 0
                 InvoiceSystem(3):current_invoice.timestamp = 0
                 InvoiceSystem(3):method = insurance
- 23:    proc  2 (PaymentProcessor:1) payment.pml:102 Send insurance     -> queue 2 (finance_log)
- 23:    proc  2 (PaymentProcessor:1) payment.pml:102 (state 34) [finance_log!method]
-                queue 2 (finance_log): [insurance]
- 24:    proc  5 (FinanceReport:1) payment.pml:149 Recv insurance        <- queue 2 (finance_log)
- 24:    proc  5 (FinanceReport:1) payment.pml:149 (state 1)     [finance_log?log_entry]
-                queue 2 (finance_log): 
+ 51:    proc  3 (InvoiceSystem:1) payment.pml:186 (state 2)     [current_invoice.invoice_id = _pid]
+                queue 3 (finance_log): 
+                InvoiceSystem(3):current_invoice.invoice_id = 3
+                InvoiceSystem(3):current_invoice.status = 0
+                InvoiceSystem(3):current_invoice.payment_method = 0
+                InvoiceSystem(3):current_invoice.timestamp = 0
+ 52:    proc  2 (PaymentProcessor:1) payment.pml:170 Send insurance     -> queue 3 (finance_log)
+ 52:    proc  2 (PaymentProcessor:1) payment.pml:170 (state 35) [finance_log!method]
+                queue 3 (finance_log): [insurance]
+ 53:    proc  3 (InvoiceSystem:1) payment.pml:187 (state 3)     [current_invoice.payment_method = method]
+                queue 3 (finance_log): [insurance]
+                InvoiceSystem(3):current_invoice.invoice_id = 3
+                InvoiceSystem(3):current_invoice.status = 0
+                InvoiceSystem(3):current_invoice.payment_method = insurance
+                InvoiceSystem(3):current_invoice.timestamp = 0
+ 54:    proc  2 (PaymentProcessor:1) payment.pml:171 (state 36) [recurring_active = 1]
+                queue 3 (finance_log): [insurance]
+                recurring_active = 1
+ 55:    proc  2 (PaymentProcessor:1) payment.pml:172 (state 37) [client_1_finished_booking = 1]
+                client_1_finished_booking = 1
+                queue 3 (finance_log): [insurance]
+ 56:    proc  4 (RecurringBilling:1) payment.pml:205 (state 1)  [(recurring_active)]
+                queue 3 (finance_log): [insurance]
+                      Recurring payment initiated
+ 57:    proc  4 (RecurringBilling:1) payment.pml:206 (state 2)  [printf('Recurring payment initiated\\n')]
+                queue 3 (finance_log): [insurance]
+ 58:    proc  3 (InvoiceSystem:1) payment.pml:188 (state 4)     [current_invoice.status = generated]
+                queue 3 (finance_log): [insurance]
+                InvoiceSystem(3):current_invoice.invoice_id = 3
+                InvoiceSystem(3):current_invoice.status = generated
+                InvoiceSystem(3):current_invoice.payment_method = insurance
+                InvoiceSystem(3):current_invoice.timestamp = 0
+ 59:    proc  5 (FinanceReport:1) payment.pml:219 Recv insurance        <- queue 3 (finance_log)
+ 59:    proc  5 (FinanceReport:1) payment.pml:219 (state 1)     [finance_log?log_entry]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = 0
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 0
@@ -93,14 +195,8 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
                 FinanceReport(5):log_entry = insurance
- 25:    proc  3 (InvoiceSystem:1) payment.pml:116 (state 2)     [current_invoice.invoice_id = _pid]
-                queue 2 (finance_log): 
-                InvoiceSystem(3):current_invoice.invoice_id = 3
-                InvoiceSystem(3):current_invoice.status = 0
-                InvoiceSystem(3):current_invoice.payment_method = 0
-                InvoiceSystem(3):current_invoice.timestamp = 0
- 26:    proc  5 (FinanceReport:1) payment.pml:151 (state 2)     [((log_entry!=none))]
-                queue 2 (finance_log): 
+ 60:    proc  5 (FinanceReport:1) payment.pml:221 (state 2)     [((log_entry!=none))]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = 0
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 0
@@ -121,19 +217,8 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].amount = 0
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
- 27:    proc  2 (PaymentProcessor:1) payment.pml:103 (state 35) [recurring_active = 1]
-                queue 2 (finance_log): 
-                recurring_active = 1
- 28:    proc  3 (InvoiceSystem:1) payment.pml:117 (state 3)     [current_invoice.payment_method = method]
-                queue 2 (finance_log): 
-                InvoiceSystem(3):current_invoice.invoice_id = 3
-                InvoiceSystem(3):current_invoice.status = 0
-                InvoiceSystem(3):current_invoice.payment_method = insurance
-                InvoiceSystem(3):current_invoice.timestamp = 0
- 29:    proc  2 (PaymentProcessor:1) payment.pml:108 (state 40) [.(goto)]
-                queue 2 (finance_log): 
- 30:    proc  5 (FinanceReport:1) payment.pml:152 (state 3)     [records[record_count].transaction_type = log_entry]
-                queue 2 (finance_log): 
+ 61:    proc  5 (FinanceReport:1) payment.pml:222 (state 3)     [records[record_count].transaction_type = log_entry]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 0
@@ -154,8 +239,8 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].amount = 0
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
- 31:    proc  5 (FinanceReport:1) payment.pml:153 (state 4)     [records[record_count].is_success = 1]
-                queue 2 (finance_log): 
+ 62:    proc  5 (FinanceReport:1) payment.pml:223 (state 4)     [records[record_count].is_success = 1]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 0
@@ -176,26 +261,10 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].amount = 0
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
- 32:    proc  4 (RecurringBilling:1) payment.pml:135 (state 1)  [(recurring_active)]
-                queue 2 (finance_log): 
-                      Recurring payment initiated
- 33:    proc  4 (RecurringBilling:1) payment.pml:136 (state 2)  [printf('Recurring payment initiated\\n')]
-                queue 2 (finance_log): 
- 34:    proc  3 (InvoiceSystem:1) payment.pml:118 (state 4)     [current_invoice.status = generated]
-                queue 2 (finance_log): 
-                InvoiceSystem(3):current_invoice.invoice_id = 3
-                InvoiceSystem(3):current_invoice.status = generated
-                InvoiceSystem(3):current_invoice.payment_method = insurance
-                InvoiceSystem(3):current_invoice.timestamp = 0
-                  Invoice 3 generated for payment method: insurance
- 35:    proc  3 (InvoiceSystem:1) payment.pml:119 (state 5)     [printf('Invoice %d generated for payment method: %e\\n',current_invoice.invoice_id,method)]
-                queue 2 (finance_log): 
-                InvoiceSystem(3):current_invoice.invoice_id = 3
-                InvoiceSystem(3):current_invoice.status = generated
-                InvoiceSystem(3):current_invoice.payment_method = insurance
-                InvoiceSystem(3):current_invoice.timestamp = 0
- 36:    proc  5 (FinanceReport:1) payment.pml:154 (state 5)     [records[record_count].timestamp = _pid]
-                queue 2 (finance_log): 
+ 63:    proc  2 (PaymentProcessor:1) payment.pml:178 (state 43) [.(goto)]
+                queue 3 (finance_log): 
+ 64:    proc  5 (FinanceReport:1) payment.pml:224 (state 5)     [records[record_count].timestamp = _pid]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 5
@@ -216,15 +285,22 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].amount = 0
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
-                  Invoice 3 viewed
- 37:    proc  3 (InvoiceSystem:1) payment.pml:123 (state 6)     [printf('Invoice %d viewed\\n',current_invoice.invoice_id)]
-                queue 2 (finance_log): 
+                  Invoice 3 generated for payment method: insurance
+ 65:    proc  3 (InvoiceSystem:1) payment.pml:189 (state 5)     [printf('Invoice %d generated for payment method: %e\\n',current_invoice.invoice_id,method)]
+                queue 3 (finance_log): 
                 InvoiceSystem(3):current_invoice.invoice_id = 3
                 InvoiceSystem(3):current_invoice.status = generated
                 InvoiceSystem(3):current_invoice.payment_method = insurance
                 InvoiceSystem(3):current_invoice.timestamp = 0
- 38:    proc  5 (FinanceReport:1) payment.pml:155 (state 6)     [record_count = (record_count+1)]
-                queue 2 (finance_log): 
+                  Invoice 3 printed
+ 66:    proc  3 (InvoiceSystem:1) payment.pml:197 (state 10)    [printf('Invoice %d printed\\n',current_invoice.invoice_id)]
+                queue 3 (finance_log): 
+                InvoiceSystem(3):current_invoice.invoice_id = 3
+                InvoiceSystem(3):current_invoice.status = generated
+                InvoiceSystem(3):current_invoice.payment_method = insurance
+                InvoiceSystem(3):current_invoice.timestamp = 0
+ 67:    proc  5 (FinanceReport:1) payment.pml:225 (state 6)     [record_count = (record_count+1)]
+                queue 3 (finance_log): 
                 FinanceReport(5):record_count = 1
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
@@ -246,21 +322,21 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].amount = 0
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
- 39:    proc  3 (InvoiceSystem:1) payment.pml:124 (state 7)     [current_invoice.status = viewed]
-                queue 2 (finance_log): 
+ 68:    proc  3 (InvoiceSystem:1) payment.pml:198 (state 11)    [current_invoice.status = printed]
+                queue 3 (finance_log): 
                 InvoiceSystem(3):current_invoice.invoice_id = 3
-                InvoiceSystem(3):current_invoice.status = viewed
+                InvoiceSystem(3):current_invoice.status = printed
                 InvoiceSystem(3):current_invoice.payment_method = insurance
                 InvoiceSystem(3):current_invoice.timestamp = 0
- 40:    proc  3 (InvoiceSystem:1) payment.pml:130 (state 13)    [.(goto)]
-                queue 2 (finance_log): 
+ 69:    proc  3 (InvoiceSystem:1) payment.pml:200 (state 13)    [.(goto)]
+                queue 3 (finance_log): 
                 InvoiceSystem(3):current_invoice.invoice_id = 3
-                InvoiceSystem(3):current_invoice.status = viewed
+                InvoiceSystem(3):current_invoice.status = printed
                 InvoiceSystem(3):current_invoice.payment_method = insurance
                 InvoiceSystem(3):current_invoice.timestamp = 0
                           Financial record added: insurance
- 41:    proc  5 (FinanceReport:1) payment.pml:156 (state 7)     [printf('Financial record added: %e\\n',log_entry)]
-                queue 2 (finance_log): 
+ 70:    proc  5 (FinanceReport:1) payment.pml:226 (state 7)     [printf('Financial record added: %e\\n',log_entry)]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 5
@@ -281,14 +357,36 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].amount = 0
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
- 42:    proc  3 (InvoiceSystem:1) payment.pml:131 (state 15)    [.(goto)]
-                queue 2 (finance_log): 
+ 71:    proc  5 (FinanceReport:1) payment.pml:233 (state 11)    [else]
+                queue 3 (finance_log): 
+                FinanceReport(5):records[0].transaction_type = insurance
+                FinanceReport(5):records[0].amount = 0
+                FinanceReport(5):records[0].timestamp = 5
+                FinanceReport(5):records[0].is_success = 1
+                FinanceReport(5):records[1].transaction_type = 0
+                FinanceReport(5):records[1].amount = 0
+                FinanceReport(5):records[1].timestamp = 0
+                FinanceReport(5):records[1].is_success = 0
+                FinanceReport(5):records[2].transaction_type = 0
+                FinanceReport(5):records[2].amount = 0
+                FinanceReport(5):records[2].timestamp = 0
+                FinanceReport(5):records[2].is_success = 0
+                FinanceReport(5):records[3].transaction_type = 0
+                FinanceReport(5):records[3].amount = 0
+                FinanceReport(5):records[3].timestamp = 0
+                FinanceReport(5):records[3].is_success = 0
+                FinanceReport(5):records[4].transaction_type = 0
+                FinanceReport(5):records[4].amount = 0
+                FinanceReport(5):records[4].timestamp = 0
+                FinanceReport(5):records[4].is_success = 0
+ 72:    proc  3 (InvoiceSystem:1) payment.pml:201 (state 15)    [.(goto)]
+                queue 3 (finance_log): 
                 InvoiceSystem(3):current_invoice.invoice_id = 3
-                InvoiceSystem(3):current_invoice.status = viewed
+                InvoiceSystem(3):current_invoice.status = printed
                 InvoiceSystem(3):current_invoice.payment_method = insurance
                 InvoiceSystem(3):current_invoice.timestamp = 0
- 43:    proc  5 (FinanceReport:1) payment.pml:163 (state 11)    [else]
-                queue 2 (finance_log): 
+ 73:    proc  5 (FinanceReport:1) payment.pml:233 (state 12)    [(1)]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 5
@@ -309,8 +407,8 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].amount = 0
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
- 44:    proc  5 (FinanceReport:1) payment.pml:163 (state 12)    [(1)]
-                queue 2 (finance_log): 
+ 74:    proc  5 (FinanceReport:1) payment.pml:235 (state 14)    [.(goto)]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 5
@@ -331,8 +429,8 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].amount = 0
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
- 45:    proc  5 (FinanceReport:1) payment.pml:165 (state 14)    [.(goto)]
-                queue 2 (finance_log): 
+ 75:    proc  5 (FinanceReport:1) payment.pml:238 (state 18)    [.(goto)]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 5
@@ -353,30 +451,8 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].amount = 0
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
- 46:    proc  5 (FinanceReport:1) payment.pml:168 (state 18)    [.(goto)]
-                queue 2 (finance_log): 
-                FinanceReport(5):records[0].transaction_type = insurance
-                FinanceReport(5):records[0].amount = 0
-                FinanceReport(5):records[0].timestamp = 5
-                FinanceReport(5):records[0].is_success = 1
-                FinanceReport(5):records[1].transaction_type = 0
-                FinanceReport(5):records[1].amount = 0
-                FinanceReport(5):records[1].timestamp = 0
-                FinanceReport(5):records[1].is_success = 0
-                FinanceReport(5):records[2].transaction_type = 0
-                FinanceReport(5):records[2].amount = 0
-                FinanceReport(5):records[2].timestamp = 0
-                FinanceReport(5):records[2].is_success = 0
-                FinanceReport(5):records[3].transaction_type = 0
-                FinanceReport(5):records[3].amount = 0
-                FinanceReport(5):records[3].timestamp = 0
-                FinanceReport(5):records[3].is_success = 0
-                FinanceReport(5):records[4].transaction_type = 0
-                FinanceReport(5):records[4].amount = 0
-                FinanceReport(5):records[4].timestamp = 0
-                FinanceReport(5):records[4].is_success = 0
- 47:    proc  5 (FinanceReport:1) payment.pml:169 (state 20)    [.(goto)]
-                queue 2 (finance_log): 
+ 76:    proc  5 (FinanceReport:1) payment.pml:239 (state 20)    [.(goto)]
+                queue 3 (finance_log): 
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
                 FinanceReport(5):records[0].timestamp = 5
@@ -399,9 +475,18 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].is_success = 0
       timeout
 #processes: 6
-                queue 2 (finance_log): 
+                client_1_initiated_booking = 1
+                client_2_initiated_booking = 0
+                unique_slot_booked_by_client_1 = 0
+                unique_slot_booked_by_client_2 = 0
+                unique_slot_is_available = 1
+                client_1_completed_payment = 1
+                client_1_present_for_service = 1
+                client_1_finished_booking = 1
+                client_1_cancelled_booking = 1
+                queue 3 (finance_log): 
                 recurring_active = 1
- 47:    proc  5 (FinanceReport:1) payment.pml:148 (state 19)
+ 76:    proc  5 (FinanceReport:1) payment.pml:218 (state 19)
                 FinanceReport(5):record_count = 1
                 FinanceReport(5):records[0].transaction_type = insurance
                 FinanceReport(5):records[0].amount = 0
@@ -424,19 +509,19 @@ Starting FinanceReport with pid 5
                 FinanceReport(5):records[4].timestamp = 0
                 FinanceReport(5):records[4].is_success = 0
                 FinanceReport(5):log_entry = insurance
- 47:    proc  4 (RecurringBilling:1) payment.pml:138 (state 3)
- 47:    proc  3 (InvoiceSystem:1) payment.pml:114 (state 14)
+ 76:    proc  4 (RecurringBilling:1) payment.pml:208 (state 3)
+ 76:    proc  3 (InvoiceSystem:1) payment.pml:184 (state 14)
                 InvoiceSystem(3):current_invoice.invoice_id = 3
-                InvoiceSystem(3):current_invoice.status = viewed
+                InvoiceSystem(3):current_invoice.status = printed
                 InvoiceSystem(3):current_invoice.payment_method = insurance
                 InvoiceSystem(3):current_invoice.timestamp = 0
                 InvoiceSystem(3):method = insurance
- 47:    proc  2 (PaymentProcessor:1) payment.pml:108 (state 41) <valid end state>
+ 76:    proc  2 (PaymentProcessor:1) payment.pml:178 (state 44) <valid end state>
                 PaymentProcessor(2):auth_success = 0
                 PaymentProcessor(2):eligible = 1
                 PaymentProcessor(2):validated = 1
                 PaymentProcessor(2):method = insurance
- 47:    proc  1 (Client:1) payment.pml:79 (state 13) <valid end state>
-                Client(1):method = insurance
- 47:    proc  0 (:init::1) payment.pml:179 (state 7) <valid end state>
-6 processes created
+ 76:    proc  1 (Client:1) payment.pml:145 (state 54)
+                Client(1):method = debit
+ 76:    proc  0 (:init::1) payment.pml:272 (state 8) <valid end state>
+7 processes created 
